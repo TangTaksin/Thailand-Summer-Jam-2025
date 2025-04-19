@@ -3,9 +3,20 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    bool inPlayerRange, revealed;
+
     void OnMouseDown()
     {
-        Debug.Log("Clicked tile: " + gameObject.name);
-        Destroy(gameObject);
+        if (inPlayerRange)
+        {
+            if (!revealed)
+            {
+                //Reveal
+            }
+        }
+        else
+        {
+            //Player's not in range
+        }
     }
 }

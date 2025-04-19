@@ -41,19 +41,20 @@ public class GameManager : MonoBehaviour
 
         playerObject = Instantiate(playerPrefab, startTile.transform.position + new Vector3(0, 0, -1), Quaternion.identity);
         currentTile = startTile;
+        startTile.BecomeChecked();
 
         RevealAdjacentTiles(currentTile);
     }
 
     public bool CanReveal(Tile tile)
     {
-        return IsAdjacent(tile, currentTile) && tile.state == Tile.TileState.Normal;
+        return IsAdjacent(tile, currentTile) && tile.state == Tile.TileState.Obscured;
     }
 
     public bool CanMoveTo(Tile tile)
     {
         return IsAdjacent(tile, currentTile) &&
-               (tile.state == Tile.TileState.Revealed || tile.state == Tile.TileState.RevealedLocked);
+               (tile.state == Tile.TileState.Revealed || tile.state == Tile.TileState.Checked);
     }
 
     public void AddRevealOption(Tile tile)
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void MovePlayerTo(Tile tile)
     {
-        currentTile.LockTile();
+        currentTile.BecomeChecked();
         currentTile = tile;
         playerObject.transform.position = tile.transform.position + new Vector3(0, 0, -1);
 

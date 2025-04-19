@@ -502,9 +502,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb74e2b311eb1d47bb835c5c51b9f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
-  width: 5
-  height: 6
+  tileList:
+  - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+    limitPerMap: 0
+    spawnChance: 40
+  width: 10
+  height: 10
   spacing: 0.1
 --- !u!4 &1205874177
 Transform:

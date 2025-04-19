@@ -4,15 +4,19 @@ public class Tile : MonoBehaviour
 {
     public enum TileState
     {
-        Normal,
+        Obscured,
         Revealed,
-        RevealedLocked
+        Checked
     }
 
     public int x, y;
-    public TileState state = TileState.Normal;
+    public TileState state = TileState.Obscured;
     private GridManager gridManager;
     private SpriteRenderer sr;
+
+    public Sprite sprite_back, sprite_front;
+
+    Color defaultColor;
 
     public void Init(int x, int y, GridManager grid)
     {
@@ -20,6 +24,9 @@ public class Tile : MonoBehaviour
         this.y = y;
         gridManager = grid;
         sr = GetComponent<SpriteRenderer>();
+
+        defaultColor = sr.color;
+
         UpdateTileAppearance();
     }
 
@@ -27,32 +34,34 @@ public class Tile : MonoBehaviour
     {
         switch (state)
         {
-            case TileState.Normal:
-                sr.color = Color.black;
+            case TileState.Obscured:
+                sr.sprite = sprite_back;
+                sr.color = defaultColor;
                 break;
             case TileState.Revealed:
-                sr.color = Color.gray;
+                sr.color = defaultColor/2;
                 break;
-            case TileState.RevealedLocked:
-                sr.color = Color.yellow;
+            case TileState.Checked:
+                sr.sprite = sprite_front;
+                sr.color = defaultColor;
                 break;
         }
     }
 
     public void Reveal()
     {
-        if (state == TileState.Normal)
+        if (state == TileState.Obscured)
         {
             state = TileState.Revealed;
             UpdateTileAppearance();
         }
     }
 
-    public void LockTile()
+    public void BecomeChecked()
     {
         if (state == TileState.Revealed)
         {
-            state = TileState.RevealedLocked;
+            state = TileState.Checked;
             UpdateTileAppearance();
         }
     }
@@ -64,14 +73,26 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if ((state == TileState.Revealed || state == TileState.RevealedLocked) && GameManager.Instance.CanMoveTo(this))
+
+        switch (state)
         {
-            GameManager.Instance.MovePlayerTo(this);
-        }
-        else if (state == TileState.Normal && GameManager.Instance.CanReveal(this))
-        {
-            Reveal();
-            GameManager.Instance.AddRevealOption(this);
+            case TileState.Obscured:
+                if (GameManager.Instance.CanReveal(this))
+                {
+                    Reveal();
+                    GameManager.Instance.AddRevealOption(this);
+                }
+                break;
+
+            case TileState.Revealed:
+                if (GameManager.Instance.CanMoveTo(this))
+                    BecomeChecked();
+                break;
+
+            case TileState.Checked:
+                if (GameManager.Instance.CanMoveTo(this))
+                    GameManager.Instance.MovePlayerTo(this);
+                break;
         }
     }
 }

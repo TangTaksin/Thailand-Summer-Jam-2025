@@ -4,6 +4,8 @@ using UnityEngine;
 public class TileChance
 {
     public GameObject tilePrefab;
-    public int limit_perMap;
+
+    public int limitPerMap;
+    public float spawnChance;
 
 }

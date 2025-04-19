@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
         switch (state)
         {
             case TileState.Normal:
-                sr.color = Color.black;
+                sr.color = Color.white;
                 break;
             case TileState.Revealed:
                 sr.color = Color.gray;
@@ -66,7 +66,11 @@ public class Tile : MonoBehaviour
     {
         if ((state == TileState.Revealed || state == TileState.RevealedLocked) && GameManager.Instance.CanMoveTo(this))
         {
-            GameManager.Instance.MovePlayerTo(this);
+            if(FuelSystem.Instance.UseFuel(1f))
+            {
+                GameManager.Instance.MovePlayerTo(this);
+            }
+            
         }
         else if (state == TileState.Normal && GameManager.Instance.CanReveal(this))
         {

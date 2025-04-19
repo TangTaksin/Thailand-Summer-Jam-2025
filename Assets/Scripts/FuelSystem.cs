@@ -116,4 +116,16 @@ public class FuelSystem : MonoBehaviour
             }
         }
     }
+
+    public void ResetFuel()
+    {
+        currentFuel = maxFuel;
+        lowFuelWarningPlayed = false;
+        emptyFuelPlayed = false;
+
+        if (lowFuelSound != null) lowFuelSound.Stop();
+        if (emptyFuelSound != null) emptyFuelSound.Stop();
+
+        SetTargetAngle();
+    }
 }

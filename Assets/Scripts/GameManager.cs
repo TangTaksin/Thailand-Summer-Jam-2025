@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Button startButton;
 
     private GameObject playerObject;
+    public Tile lastTile;
     private Tile currentTile;
     private Tile goalTile;
 
@@ -32,7 +33,10 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        FuelSystem.Instance.ResetFuel();
+        gridManager.GenerateGrid();
+
+        FuelSystem.Instance.ResetFuel(); 
+        // Reset all tiles before starting a new game
         gridManager.ResetAllTiles();
 
         if (playerObject != null)
@@ -47,18 +51,19 @@ public class GameManager : MonoBehaviour
         int goalX = Random.Range(0, gridManager.width);
         int goalY = gridManager.height - 1;
         goalTile = gridManager.GetTile(goalX, goalY);
-        goalTile.Reveal();
+        goalTile.BecomeRevealed();
         goalTile.SetAsGoal();
 
         // Set a random start tile (bottom row)
         int startX = Random.Range(0, gridManager.width);
         int startY = 0;
         Tile startTile = gridManager.GetTile(startX, startY);
-        startTile.Reveal();
+        startTile.BecomeRevealed();
 
         // Spawn player
         playerObject = Instantiate(playerPrefab, startTile.transform.position + new Vector3(0, 0, -1), Quaternion.identity);
         currentTile = startTile;
+        startTile.BecomeChecked();
 
         RevealAdjacentTiles(currentTile);
         RestartDecisionTimer(); // Start first decision timer
@@ -66,21 +71,25 @@ public class GameManager : MonoBehaviour
 
     public bool CanReveal(Tile tile)
     {
-        return IsAdjacent(tile, currentTile) && tile.state == Tile.TileState.Normal;
+        return IsAdjacent(tile, currentTile) && tile.state == Tile.TileState.Obscured;
     }
 
     public bool CanMoveTo(Tile tile)
     {
         return IsAdjacent(tile, currentTile) &&
-               (tile.state == Tile.TileState.Revealed || tile.state == Tile.TileState.RevealedLocked);
+               (tile.state == Tile.TileState.Revealed || tile.state == Tile.TileState.Checked);
     }
 
     public void AddRevealOption(Tile tile) { }
 
     public void MovePlayerTo(Tile tile)
     {
-        hasMoved = true;
-        currentTile.LockTile();
+        //currentTile.BecomeChecked();
+        //Unreveal Last tile's Adjacent
+        UnRevealLastAdjacentTiles(currentTile);
+        currentTile.ExitTile();
+        lastTile = currentTile;
+
         currentTile = tile;
         playerObject.transform.position = tile.transform.position + new Vector3(0, 0, -1);
 
@@ -107,7 +116,22 @@ public class GameManager : MonoBehaviour
     {
         Tile tile = gridManager.GetTile(x, y);
         if (tile != null)
-            tile.Reveal();
+            tile.BecomeRevealed();
+    }
+
+    void UnRevealLastAdjacentTiles(Tile tile)
+    {
+        TryUnReveal(tile.x + 1, tile.y);
+        TryUnReveal(tile.x - 1, tile.y);
+        TryUnReveal(tile.x, tile.y + 1);
+        TryUnReveal(tile.x, tile.y - 1);
+    }
+
+    void TryUnReveal(int x, int y)
+    {
+        Tile tile = gridManager.GetTile(x, y);
+        if (tile != null && tile.state == Tile.TileState.Revealed)
+            tile.BecomeObscured();
     }
 
     bool IsAdjacent(Tile a, Tile b)

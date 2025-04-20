@@ -48,7 +48,13 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void Reveal()
+    public void BecomeObcsure()
+    {
+        state = TileState.Obscured;
+        UpdateTileAppearance();
+    }
+
+    public void BecomeRevealed()
     {
         if (state == TileState.Obscured)
         {
@@ -79,7 +85,7 @@ public class Tile : MonoBehaviour
             case TileState.Obscured:
                 if (GameManager.Instance.CanReveal(this))
                 {
-                    Reveal();
+                    BecomeRevealed();
                     GameManager.Instance.AddRevealOption(this);
                 }
                 break;

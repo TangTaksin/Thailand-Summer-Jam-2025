@@ -506,8 +506,8 @@ MonoBehaviour:
   - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
     limitPerMap: 0
     spawnChance: 40
-  width: 10
-  height: 10
+  width: 5
+  height: 5
   spacing: 0.1
 --- !u!4 &1205874177
 Transform:

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7319550241701796598}
   - component: {fileID: 4189132761948539803}
   - component: {fileID: 2098135986438730418}
+  - component: {fileID: -3383271767373157736}
+  - component: {fileID: -2287508940739269031}
   m_Layer: 0
   m_Name: tile_red
   m_TagString: Untagged
@@ -78,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -3414027690778095926, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,7 +129,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.9375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -150,3 +152,37 @@ MonoBehaviour:
   x: 0
   y: 0
   state: 0
+  sprite_back: {fileID: 2492584800609947049, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  sprite_front: {fileID: -3414027690778095926, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+--- !u!114 &-3383271767373157736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227181531956728071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6902a3e7550829499aff2a804bd279f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOnEnter: 1
+  triggerOnExit: 0
+  OneTimeEffect: 1
+  depleteAmount: 2
+--- !u!114 &-2287508940739269031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227181531956728071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcdb1e10667aff45ae3e2b492a886c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOnEnter: 1
+  triggerOnExit: 0
+  OneTimeEffect: 1
+  newSprite: {fileID: -3581255935039853656, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}

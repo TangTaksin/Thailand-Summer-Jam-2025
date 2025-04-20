@@ -246,6 +246,7 @@ MonoBehaviour:
   gridManager: {fileID: 1205874176}
   playerPrefab: {fileID: 6348000699780856807, guid: d9b256aeecc4e464aafcc4f76b742f2d, type: 3}
   startButton: {fileID: 1881397432}
+  lastTile: {fileID: 0}
 --- !u!4 &423935965
 Transform:
   m_ObjectHideFlags: 0
@@ -900,7 +901,16 @@ MonoBehaviour:
   tileList:
   - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
     limitPerMap: 0
-    spawnChance: 40
+    spawnChance: 60
+  - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
+    limitPerMap: 0
+    spawnChance: 10
+  - tilePrefab: {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
+    limitPerMap: 0
+    spawnChance: 20
+  - tilePrefab: {fileID: 1227181531956728071, guid: 2fe33c3ac24ea274390418d9775af9c9, type: 3}
+    limitPerMap: 0
+    spawnChance: 10
   width: 5
   height: 5
   spacing: 0.1

@@ -9,14 +9,25 @@ public class GridManager : MonoBehaviour
     public float spacing = 0.1f;
 
     private Tile[,] grid;
+    List<GameObject> tileObjects = new List<GameObject>();
 
     void Start()
     {
-        GenerateGrid();
+        
     }
 
     public void GenerateGrid()
     {
+        if (tileObjects.Count > 0)
+        {
+            foreach (var tile in tileObjects)
+            {
+                Destroy(tile);
+            }
+
+            tileObjects.Clear();
+        }
+
         grid = new Tile[width, height];
 
         for (int x = 0; x < width; x++)
@@ -26,6 +37,8 @@ public class GridManager : MonoBehaviour
                 Vector3 pos = new Vector3(x + (x * spacing), y + (y * spacing), 0);
 
                 GameObject go = Instantiate(RandomizeTile(), pos, Quaternion.identity, transform);
+                tileObjects.Add(go);
+
                 Tile tile = go.GetComponent<Tile>();
                 tile.Init(x, y, this);
                 grid[x, y] = tile;
@@ -52,7 +65,7 @@ public class GridManager : MonoBehaviour
 
             if (random < top)
             {
-                print("top: " + top);
+                //print("top: " + top);
                 chosenTile = tile.tilePrefab;
 
                 break;

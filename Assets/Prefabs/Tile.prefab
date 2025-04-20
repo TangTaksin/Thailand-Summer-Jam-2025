@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -599164982057831224, guid: 3599e61e57f305846abb29e4d230e652, type: 3}
+  m_Sprite: {fileID: -3581255935039853656, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,8 +104,14 @@ MonoBehaviour:
   x: 1
   y: 1
   state: 0
-  sprite_back: {fileID: 2735333203175255914, guid: a0c3f077ba6a740408ca03e2ee967b6b, type: 3}
-  sprite_front: {fileID: -599164982057831224, guid: 3599e61e57f305846abb29e4d230e652, type: 3}
+  sprite_back: {fileID: 2492584800609947049, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  sprite_front: {fileID: -3581255935039853656, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  OnEnterTile:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExitTile:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &-904998606604669066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +150,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.9375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

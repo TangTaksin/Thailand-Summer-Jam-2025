@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+using System;
 
 public class Tile : MonoBehaviour
 {
@@ -16,6 +18,9 @@ public class Tile : MonoBehaviour
     private bool isGoal = false;
 
     public Sprite sprite_back, sprite_front;
+
+    public delegate void TileEvent();
+    public TileEvent OnEnterTile, OnExitTile;
 
     Color defaultColor;
 
@@ -55,7 +60,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void BecomeObcsure()
+    public void BecomeObscured()
     {
         state = TileState.Obscured;
         UpdateTileAppearance();
@@ -87,9 +92,15 @@ public class Tile : MonoBehaviour
 
     public void Reset()
     {
-        state = TileState.Normal;
+        state = TileState.Obscured;
         isGoal = false;
         UpdateTileAppearance();
+    }
+
+    public void ExitTile()
+    {
+        OnExitTile?.Invoke();
+        print("Exiting tile x " + x + ", y " + y);
     }
 
     private void OnMouseDown()
@@ -111,14 +122,15 @@ public class Tile : MonoBehaviour
                 break;
 
             case TileState.Checked:
-                if (GameManager.Instance.CanMoveTo(this))
+                if (GameManager.Instance.CanMoveTo(this) && FuelSystem.Instance.UseFuel(1f))
+                {
                     GameManager.Instance.MovePlayerTo(this);
-                break;
-        }
 
-        if (FuelSystem.Instance.UseFuel(1f))
-        {
-            GameManager.Instance.MovePlayerTo(this);
+                    //ExecuteEvent
+                    print("Entering tile x " + x + ", y " + y);
+                    OnEnterTile?.Invoke();
+                }
+                break;
         }
     }
 }

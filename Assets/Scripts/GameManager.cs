@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Button startButton;
 
     private GameObject playerObject;
+    public Tile lastTile;
     private Tile currentTile;
     private Tile goalTile;
 
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        gridManager.GenerateGrid();
+
         FuelSystem.Instance.ResetFuel(); 
         // Reset all tiles before starting a new game
         gridManager.ResetAllTiles();
@@ -77,6 +80,8 @@ public class GameManager : MonoBehaviour
         //currentTile.BecomeChecked();
         //Unreveal Last tile's Adjacent
         UnRevealLastAdjacentTiles(currentTile);
+        currentTile.ExitTile();
+        lastTile = currentTile;
 
         currentTile = tile;
         playerObject.transform.position = tile.transform.position + new Vector3(0, 0, -1);
@@ -117,7 +122,7 @@ public class GameManager : MonoBehaviour
     {
         Tile tile = gridManager.GetTile(x, y);
         if (tile != null && tile.state == Tile.TileState.Revealed)
-            tile.BecomeObcsure();
+            tile.BecomeObscured();
     }
 
     bool IsAdjacent(Tile a, Tile b)

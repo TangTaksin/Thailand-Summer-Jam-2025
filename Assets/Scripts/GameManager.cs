@@ -25,20 +25,33 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        if (playerObject != null)
-            Destroy(playerObject);
+        FuelSystem.Instance.ResetFuel(); 
+        // Reset all tiles before starting a new game
+        gridManager.ResetAllTiles();
 
+        // Destroy existing player
+        if (playerObject != null)
+        {
+            Destroy(playerObject);
+            playerObject = null;
+        }
+
+        goalTile = null;
+
+        // Random goal tile at top row
         int goalX = Random.Range(0, gridManager.width);
         int goalY = gridManager.height - 1;
         goalTile = gridManager.GetTile(goalX, goalY);
         goalTile.BecomeRevealed();
         goalTile.SetAsGoal();
 
+        // Random start tile at bottom row
         int startX = Random.Range(0, gridManager.width);
         int startY = 0;
         Tile startTile = gridManager.GetTile(startX, startY);
         startTile.BecomeRevealed();
 
+        // Create player
         playerObject = Instantiate(playerPrefab, startTile.transform.position + new Vector3(0, 0, -1), Quaternion.identity);
         currentTile = startTile;
         startTile.BecomeChecked();
@@ -57,10 +70,7 @@ public class GameManager : MonoBehaviour
                (tile.state == Tile.TileState.Revealed || tile.state == Tile.TileState.Checked);
     }
 
-    public void AddRevealOption(Tile tile)
-    {
-        // You can track reveal options if needed
-    }
+    public void AddRevealOption(Tile tile) { }
 
     public void MovePlayerTo(Tile tile)
     {

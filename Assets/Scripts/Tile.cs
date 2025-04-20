@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
     public TileState state = TileState.Obscured;
     private GridManager gridManager;
     private SpriteRenderer sr;
+    private bool isGoal = false;
 
     public Sprite sprite_back, sprite_front;
 
@@ -32,6 +33,12 @@ public class Tile : MonoBehaviour
 
     public void UpdateTileAppearance()
     {
+        if (isGoal)
+        {
+            sr.color = Color.green;
+            return;
+        }
+
         switch (state)
         {
             case TileState.Obscured:
@@ -74,7 +81,15 @@ public class Tile : MonoBehaviour
 
     public void SetAsGoal()
     {
-        sr.color = Color.green;
+        isGoal = true;
+        UpdateTileAppearance();
+    }
+
+    public void Reset()
+    {
+        state = TileState.Normal;
+        isGoal = false;
+        UpdateTileAppearance();
     }
 
     private void OnMouseDown()
@@ -99,6 +114,11 @@ public class Tile : MonoBehaviour
                 if (GameManager.Instance.CanMoveTo(this))
                     GameManager.Instance.MovePlayerTo(this);
                 break;
+        }
+
+        if (FuelSystem.Instance.UseFuel(1f))
+        {
+            GameManager.Instance.MovePlayerTo(this);
         }
     }
 }

@@ -68,4 +68,13 @@ public class GridManager : MonoBehaviour
             return grid[x, y];
         return null;
     }
+
+    public void ResetAllTiles()
+    {
+        foreach (Tile tile in grid)
+        {
+            if (tile != null)
+                tile.Reset();
+        }
+    }
 }

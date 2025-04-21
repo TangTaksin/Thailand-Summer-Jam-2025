@@ -21,6 +21,7 @@ public class Tile : MonoBehaviour
 
     public delegate void TileEvent();
     public TileEvent OnEnterTile, OnExitTile;
+    public static TileEvent OnChecked;
 
     Color defaultColor;
 
@@ -118,7 +119,10 @@ public class Tile : MonoBehaviour
 
             case TileState.Revealed:
                 if (GameManager.Instance.CanMoveTo(this))
+                {
                     BecomeChecked();
+                    OnChecked?.Invoke();
+                }
                 break;
 
             case TileState.Checked:

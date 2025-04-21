@@ -246,6 +246,7 @@ MonoBehaviour:
   gridManager: {fileID: 1205874176}
   playerPrefab: {fileID: 6348000699780856807, guid: d9b256aeecc4e464aafcc4f76b742f2d, type: 3}
   startButton: {fileID: 1881397432}
+  lastTile: {fileID: 0}
   decisionTimerBar: {fileID: 745861854}
   decisionTime: 5
   fuelPenalty: 1
@@ -975,7 +976,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb74e2b311eb1d47bb835c5c51b9f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+  tileList:
+  - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+    limitPerMap: 30
+    spawnChance: 60
+  - tilePrefab: {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
+    limitPerMap: 2
+    spawnChance: 20
+  - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
+    limitPerMap: 5
+    spawnChance: 10
+  - tilePrefab: {fileID: 1227181531956728071, guid: 2fe33c3ac24ea274390418d9775af9c9, type: 3}
+    limitPerMap: 10
+    spawnChance: 10
   width: 5
   height: 6
   spacing: 0.1
@@ -1075,7 +1088,7 @@ Transform:
   m_GameObject: {fileID: 1750042612}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Button startButton;
 
+    public int tileNeeded = 30;
+
     private GameObject playerObject;
-    public Tile lastTile;
+    [HideInInspector] public Tile lastTile;
     private Tile currentTile;
     private Tile goalTile;
 
@@ -49,14 +51,15 @@ public class GameManager : MonoBehaviour
 
         // Set a random goal tile (top row)
         int goalX = Random.Range(0, gridManager.width);
-        int goalY = gridManager.height - 1;
+        int goalY = Random.Range(0, gridManager.height);
         goalTile = gridManager.GetTile(goalX, goalY);
-        goalTile.BecomeRevealed();
+        goalTile.BecomeChecked();
         goalTile.SetAsGoal();
 
         // Set a random start tile (bottom row)
         int startX = Random.Range(0, gridManager.width);
-        int startY = 0;
+        int startY = Random.Range(0, gridManager.height);
+
         Tile startTile = gridManager.GetTile(startX, startY);
         startTile.BecomeRevealed();
 
@@ -95,16 +98,10 @@ public class GameManager : MonoBehaviour
         currentTile = tile;
         playerObject.transform.position = tile.transform.position + new Vector3(0, 0, -1);
 
-        if (tile == goalTile)
-        {
-            Debug.Log("🎉 You reached the goal!");
-            StopDecisionTimer();
-            return;
-        }
-
         RevealAdjacentTiles(currentTile);
         RestartDecisionTimer(); // Restart timer for next move
     }
+
 
     void RevealAdjacentTiles(Tile tile)
     {
@@ -140,6 +137,7 @@ public class GameManager : MonoBehaviour
     {
         return (Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y)) == 1;
     }
+
 
     void UpdateTimerBar(float percent)
     {

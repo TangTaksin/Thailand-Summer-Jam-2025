@@ -104,6 +104,8 @@ MonoBehaviour:
   x: 1
   y: 1
   state: 0
+  sprite_back: {fileID: 2492584800609947049, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  sprite_front: {fileID: -3581255935039853656, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
 --- !u!61 &-904998606604669066
 BoxCollider2D:
   m_ObjectHideFlags: 0

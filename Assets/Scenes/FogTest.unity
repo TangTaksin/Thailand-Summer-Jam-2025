@@ -155,7 +155,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.3433962, g: 0.3433962, b: 0.3433962, a: 0}
+  m_BackGroundColor: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -246,7 +246,9 @@ MonoBehaviour:
   gridManager: {fileID: 1205874176}
   playerPrefab: {fileID: 6348000699780856807, guid: d9b256aeecc4e464aafcc4f76b742f2d, type: 3}
   startButton: {fileID: 1881397432}
-  lastTile: {fileID: 0}
+  decisionTimerBar: {fileID: 745861854}
+  decisionTime: 5
+  fuelPenalty: 1
 --- !u!4 &423935965
 Transform:
   m_ObjectHideFlags: 0
@@ -615,6 +617,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720576870}
   m_CullTransparentMesh: 1
+--- !u!1 &745861852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 745861853}
+  - component: {fileID: 745861855}
+  - component: {fileID: 745861854}
+  m_Layer: 5
+  m_Name: DecisionTimerBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &745861853
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745861852}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.86, y: 1.86, z: 1.86}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1915837799}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 286, y: 35}
+  m_SizeDelta: {x: 65.625, y: 28.125}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &745861854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745861852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -3571947363133471445, guid: a646c9e5c7402544cbabf3f2d5faf75f, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &745861855
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745861852}
+  m_CullTransparentMesh: 1
 --- !u!1 &949241294
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,21 +975,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb74e2b311eb1d47bb835c5c51b9f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileList:
-  - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
-    limitPerMap: 0
-    spawnChance: 60
-  - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
-    limitPerMap: 0
-    spawnChance: 10
-  - tilePrefab: {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
-    limitPerMap: 0
-    spawnChance: 20
-  - tilePrefab: {fileID: 1227181531956728071, guid: 2fe33c3ac24ea274390418d9775af9c9, type: 3}
-    limitPerMap: 0
-    spawnChance: 10
+  tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
   width: 5
-  height: 5
+  height: 6
   spacing: 0.1
 --- !u!4 &1205874177
 Transform:
@@ -1232,6 +1297,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1881397431}
+  - {fileID: 745861853}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1255,7 +1321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2133402983
 SpriteRenderer:
   m_ObjectHideFlags: 0

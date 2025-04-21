@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +14,13 @@ public class GameManager : MonoBehaviour
     public Tile lastTile;
     private Tile currentTile;
     private Tile goalTile;
+
+    [Header("Decision Timer")]
+    public Image decisionTimerBar;      // UI fill bar (assign in Inspector)
+    public float decisionTime = 5f;     // How long the player has to decide
+    public float fuelPenalty = 5f;      // Fuel lost if timer runs out
+    private Coroutine decisionTimerCoroutine;
+    private bool hasMoved = false;
 
     private void Awake()
     {
@@ -32,7 +39,6 @@ public class GameManager : MonoBehaviour
         // Reset all tiles before starting a new game
         gridManager.ResetAllTiles();
 
-        // Destroy existing player
         if (playerObject != null)
         {
             Destroy(playerObject);
@@ -41,25 +47,26 @@ public class GameManager : MonoBehaviour
 
         goalTile = null;
 
-        // Random goal tile at top row
+        // Set a random goal tile (top row)
         int goalX = Random.Range(0, gridManager.width);
         int goalY = gridManager.height - 1;
         goalTile = gridManager.GetTile(goalX, goalY);
         goalTile.BecomeRevealed();
         goalTile.SetAsGoal();
 
-        // Random start tile at bottom row
+        // Set a random start tile (bottom row)
         int startX = Random.Range(0, gridManager.width);
         int startY = 0;
         Tile startTile = gridManager.GetTile(startX, startY);
         startTile.BecomeRevealed();
 
-        // Create player
+        // Spawn player
         playerObject = Instantiate(playerPrefab, startTile.transform.position + new Vector3(0, 0, -1), Quaternion.identity);
         currentTile = startTile;
         startTile.BecomeChecked();
 
         RevealAdjacentTiles(currentTile);
+        RestartDecisionTimer(); // Start first decision timer
     }
 
     public bool CanReveal(Tile tile)
@@ -83,16 +90,20 @@ public class GameManager : MonoBehaviour
         currentTile.ExitTile();
         lastTile = currentTile;
 
+        hasMoved = true;
+
         currentTile = tile;
         playerObject.transform.position = tile.transform.position + new Vector3(0, 0, -1);
 
         if (tile == goalTile)
         {
             Debug.Log("🎉 You reached the goal!");
+            StopDecisionTimer();
             return;
         }
 
         RevealAdjacentTiles(currentTile);
+        RestartDecisionTimer(); // Restart timer for next move
     }
 
     void RevealAdjacentTiles(Tile tile)
@@ -128,5 +139,54 @@ public class GameManager : MonoBehaviour
     bool IsAdjacent(Tile a, Tile b)
     {
         return (Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y)) == 1;
+    }
+
+    void UpdateTimerBar(float percent)
+    {
+        if (decisionTimerBar != null)
+        {
+            decisionTimerBar.fillAmount = percent;
+        }
+    }
+
+    IEnumerator DecisionTimer()
+    {
+        hasMoved = false;
+
+        while (!hasMoved)
+        {
+            float timer = decisionTime;
+
+            while (timer > 0f && !hasMoved)
+            {
+                timer -= Time.deltaTime;
+                UpdateTimerBar(timer / decisionTime);
+                yield return null;
+            }
+
+            if (!hasMoved)
+            {
+                FuelSystem.Instance.UseFuel(fuelPenalty);
+                Debug.Log("⛽ Time's up! Fuel lost.");
+                UpdateTimerBar(0f);
+            }
+        }
+
+        UpdateTimerBar(0f);
+    }
+
+    public void RestartDecisionTimer()
+    {
+        StopDecisionTimer();
+        decisionTimerCoroutine = StartCoroutine(DecisionTimer());
+    }
+
+    public void StopDecisionTimer()
+    {
+        if (decisionTimerCoroutine != null)
+        {
+            StopCoroutine(decisionTimerCoroutine);
+            decisionTimerCoroutine = null;
+        }
     }
 }

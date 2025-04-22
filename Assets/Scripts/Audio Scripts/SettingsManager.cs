@@ -16,25 +16,25 @@ public class SettingsManager : MonoBehaviour
     private Animator _animator;
     private bool isPanelOpen = false;
     private CanvasGroup canvasGroup;
+    private Coroutine myCoroutine;
+    private bool isAnimating = false; // Flag to prevent multiple animations
 
     private void Awake()
     {
         canvasGroup = settingPanel.GetComponent<CanvasGroup>();
         _animator = settingPanel.GetComponent<Animator>();
         _animator.enabled = false;
-
     }
-    
+
     void Start()
     {
         LoadVolume();
-
     }
 
     private void Update()
     {
         // Toggle settings panel when 'P' is pressed
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && !isAnimating)
         {
             ToggleSettingsPanel();
         }
@@ -99,15 +99,22 @@ public class SettingsManager : MonoBehaviour
 
     public void OpenSettingsPanel()
     {
-        StartCoroutine(DeactivatePanelBeforeAnimation());
-
+        if (!isAnimating)
+        {
+            isAnimating = true; // Set the flag to true to indicate animation is in progress
+            myCoroutine = StartCoroutine(DeactivatePanelBeforeAnimation());
+        }
     }
 
     public void CloseSettingsPanel()
     {
-        _animator.SetTrigger("Close");
-        StartCoroutine(DeactivatePanelAfterAnimation());
-        Time.timeScale = 1;
+        if (!isAnimating)
+        {
+            isAnimating = true; // Set the flag to true to indicate animation is in progress
+            _animator.SetTrigger("Close");
+            StartCoroutine(DeactivatePanelAfterAnimation());
+            Time.timeScale = 1;
+        }
     }
 
     private IEnumerator DeactivatePanelAfterAnimation()
@@ -121,6 +128,7 @@ public class SettingsManager : MonoBehaviour
         settingPanel.SetActive(false);
         _animator.enabled = false;
         isPanelOpen = false;
+        isAnimating = false; // Reset the animation flag when done
     }
 
     private IEnumerator DeactivatePanelBeforeAnimation()
@@ -140,6 +148,17 @@ public class SettingsManager : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
 
         Time.timeScale = 0;
+        isAnimating = false; // Reset the animation flag when done
+    }
+
+    public void StopPanel()
+    {
+        // Ensure coroutine is running before stopping it
+        if (myCoroutine != null)
+        {
+            StopCoroutine(myCoroutine);
+            myCoroutine = null; // Clear the reference
+        }
     }
 
     public void Resume()

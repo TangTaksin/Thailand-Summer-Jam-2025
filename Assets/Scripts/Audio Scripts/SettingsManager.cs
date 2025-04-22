@@ -24,7 +24,7 @@ public class SettingsManager : MonoBehaviour
         _animator.enabled = false;
 
     }
-
+    
     void Start()
     {
         LoadVolume();

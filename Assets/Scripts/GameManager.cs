@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
 
     public void MovePlayerTo(Tile tile)
     {
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.open_Tile_SFX);
         //currentTile.BecomeChecked();
         //Unreveal Last tile's Adjacent
         UnRevealLastAdjacentTiles(currentTile);

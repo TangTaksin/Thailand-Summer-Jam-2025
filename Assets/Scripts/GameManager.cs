@@ -10,12 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Button startButton;
 
-    public int tileNeeded = 30;
-
     private GameObject playerObject;
     [HideInInspector] public Tile lastTile;
     private Tile currentTile;
-    private Tile goalTile;
 
     [Header("Decision Timer")]
     public Image decisionTimerBar;      // UI fill bar (assign in Inspector)
@@ -39,22 +36,13 @@ public class GameManager : MonoBehaviour
 
         FuelSystem.Instance.ResetFuel(); 
         // Reset all tiles before starting a new game
-        gridManager.ResetAllTiles();
+        //gridManager.ResetAllTiles();
 
         if (playerObject != null)
         {
             Destroy(playerObject);
             playerObject = null;
         }
-
-        goalTile = null;
-
-        // Set a random goal tile (top row)
-        int goalX = Random.Range(0, gridManager.width);
-        int goalY = Random.Range(0, gridManager.height);
-        goalTile = gridManager.GetTile(goalX, goalY);
-        goalTile.BecomeChecked();
-        goalTile.SetAsGoal();
 
         // Set a random start tile (bottom row)
         int startX = Random.Range(0, gridManager.width);

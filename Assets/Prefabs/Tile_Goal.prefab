@@ -71,5 +71,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3011655832575176639}
   m_SourcePrefab: {fileID: 100100000, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+--- !u!1 &6503503527275886636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+  m_PrefabInstance: {fileID: 5765957642884229074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3011655832575176639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6503503527275886636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4be0abdb525fea459ce1e98620651db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOnEnter: 1
+  triggerOnExit: 0
+  OneTimeEffect: 0
+  unlockedGoalSprite: {fileID: 1548094874801307909, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  lockedGoalSprite: {fileID: 3020055004632201074, guid: cfa045e3925ed424ab03185a8c7fcc48, type: 3}
+  tileNeeded: 30

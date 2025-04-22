@@ -8,9 +8,14 @@ public class GridManager : MonoBehaviour
     public int height = 6;
     public float spacing = 0.1f;
 
+    public int tileNeeded;
+
     private Tile[,] grid;
     public List<Tile> tileObjects = new List<Tile>();
     List<int> tileLimitTrackers = new List<int>();
+
+    public delegate void GridManagerEvent();
+    public static GridManagerEvent OnGenerated; 
 
     void Start()
     {
@@ -44,7 +49,7 @@ public class GridManager : MonoBehaviour
         {
             foreach (var tile in tileObjects)
             {
-                Destroy(tile);
+                Destroy(tile.gameObject);
             }
 
             tileObjects.Clear();
@@ -71,6 +76,8 @@ public class GridManager : MonoBehaviour
                 grid[x, y] = tile;
             }
         }
+
+        OnGenerated?.Invoke();
     }
 
     GameObject RandomizeTile()
@@ -133,5 +140,30 @@ public class GridManager : MonoBehaviour
             if (tile != null)
                 tile.Reset();
         }
+    }
+
+    public (int,int,int) TileStatusCounter()
+    {
+        int obscure = 0;
+        int reveal = 0;
+        int check = 0;
+
+        foreach(var tile in tileObjects)
+        {
+            switch(tile.state)
+            {
+                case Tile.TileState.Obscured:
+                    obscure++;
+                    break;
+                case Tile.TileState.Revealed:
+                    reveal++;
+                    break;
+                case Tile.TileState.Checked:
+                    check++;
+                    break;
+            }
+        }
+
+        return (obscure, reveal, check);
     }
 }

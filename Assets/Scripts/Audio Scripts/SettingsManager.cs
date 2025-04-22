@@ -22,10 +22,13 @@ public class SettingsManager : MonoBehaviour
         canvasGroup = settingPanel.GetComponent<CanvasGroup>();
         _animator = settingPanel.GetComponent<Animator>();
         _animator.enabled = false;
-        if (PlayerPrefs.HasKey("musicVolume") || PlayerPrefs.HasKey("sfxVolume"))
-        {
-            LoadVolume();
-        }
+
+    }
+
+    void Start()
+    {
+        LoadVolume();
+
     }
 
     private void Update()
@@ -61,9 +64,20 @@ public class SettingsManager : MonoBehaviour
     public void LoadVolume()
     {
         Debug.Log("Loading volume");
-        musicSlider.value = PlayerPrefs.GetFloat("musicVolume", 1.0f);  // Default value 1.0f
-        ambientSlider.value = PlayerPrefs.GetFloat("ambientVolume", 1.0f); // Default value 1.0f
-        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume", 1.0f); // Default value 1.0f
+
+        float musicVol = Mathf.Clamp(PlayerPrefs.GetFloat("musicVolume", 1.0f), 0.0001f, 1f);
+        float ambientVol = Mathf.Clamp(PlayerPrefs.GetFloat("ambientVolume", 1.0f), 0.0001f, 1f);
+        float sfxVol = Mathf.Clamp(PlayerPrefs.GetFloat("sfxVolume", 1.0f), 0.0001f, 1f);
+
+        musicSlider.value = musicVol;
+        ambientSlider.value = ambientVol;
+        sfxSlider.value = sfxVol;
+
+        Debug.Log($"Applying volumes - Music: {musicVol}, Ambient: {ambientVol}, SFX: {sfxVol}");
+
+        myMixer.SetFloat("Music", Mathf.Log10(musicVol) * 20);
+        myMixer.SetFloat("Ambient", Mathf.Log10(ambientVol) * 20);
+        myMixer.SetFloat("SFX", Mathf.Log10(sfxVol) * 20);
     }
 
     public void RestartLevel()

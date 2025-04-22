@@ -77,6 +77,7 @@ public class Tile : MonoBehaviour
 
     public void BecomeChecked()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.open_Tile_SFX);
         if (state == TileState.Revealed)
         {
             state = TileState.Checked;
@@ -124,6 +125,7 @@ public class Tile : MonoBehaviour
             case TileState.Checked:
                 if (GameManager.Instance.CanMoveTo(this) && FuelSystem.Instance.UseFuel(1f))
                 {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.player_Step_On_Tile);
                     GameManager.Instance.MovePlayerTo(this);
 
                     //ExecuteEvent

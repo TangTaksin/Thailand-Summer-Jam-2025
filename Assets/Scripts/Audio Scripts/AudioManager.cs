@@ -13,14 +13,12 @@ public class AudioManager : MonoBehaviour
     //public AudioClip ambient_Rain;
 
     [Header("SFX")]
-    // public AudioClip pickUp_sfx;
-    // public AudioClip pickUpWrong_sfx;
-    // public AudioClip useItem_sfx;
-    // public AudioClip openDoor_sfx;
-    // public AudioClip closeDoor_sfx;
-    // public AudioClip[] walking_sfx;
-    // public AudioClip morning_sfx;
-    // public AudioClip nightTime_sfx;
+    public AudioClip open_Tile_SFX;
+    public AudioClip player_Step_On_Tile;
+    public AudioClip lose_Fuel_SFX;
+    public AudioClip gain_Fuel_SFX;
+
+
 
     [Header("Settings")]
     [SerializeField] public float minTimeBetween = 0.3f;

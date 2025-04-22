@@ -15,9 +15,11 @@ public class SettingsManager : MonoBehaviour
 
     private Animator _animator;
     private bool isPanelOpen = false;
+    private CanvasGroup canvasGroup;
 
     private void Awake()
     {
+        canvasGroup = settingPanel.GetComponent<CanvasGroup>();
         _animator = settingPanel.GetComponent<Animator>();
         _animator.enabled = false;
         if (PlayerPrefs.HasKey("musicVolume") || PlayerPrefs.HasKey("sfxVolume"))
@@ -96,7 +98,12 @@ public class SettingsManager : MonoBehaviour
 
     private IEnumerator DeactivatePanelAfterAnimation()
     {
+        // Disable interaction
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
         yield return new WaitForSecondsRealtime(_animator.GetCurrentAnimatorStateInfo(0).length);
+
         settingPanel.SetActive(false);
         _animator.enabled = false;
         isPanelOpen = false;
@@ -107,7 +114,17 @@ public class SettingsManager : MonoBehaviour
         settingPanel.SetActive(true);
         _animator.enabled = true;
         isPanelOpen = true;
+
+        // Disable interaction
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
         yield return new WaitForSecondsRealtime(_animator.GetCurrentAnimatorStateInfo(0).length);
+
+        // Enable interaction after animation
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+
         Time.timeScale = 0;
     }
 

@@ -73,10 +73,15 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(FadeInAudio(ambientSource)); // Fade in the ambient sound
     }
 
-    public void PlaySFX(AudioClip audioClip)
+    public void PlaySFXWithRandomPitch(AudioClip audioClip)
     {
         // Randomize pitch for SFX
         sfxSource.pitch = Random.Range(minPitch, maxPitch);
+        sfxSource.PlayOneShot(audioClip);
+    }
+
+    public void PlaySFX(AudioClip audioClip)
+    {
         sfxSource.PlayOneShot(audioClip);
     }
 

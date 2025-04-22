@@ -27,8 +27,7 @@ public class LevelManager : MonoBehaviour
         if (AreAllLevelsCleared())
         {
             Debug.Log("🎉 All levels cleared!");
-            // Optionally load a final scene or show UI
-            // SceneManager.LoadScene("FinalScene");
+            SceneManager.LoadScene("EndScene");
         }
     }
 

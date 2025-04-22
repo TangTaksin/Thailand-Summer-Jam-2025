@@ -11,9 +11,8 @@ public class GameManager : MonoBehaviour
     public Button startButton;
 
     private GameObject playerObject;
-    public Tile lastTile;
+    [HideInInspector] public Tile lastTile;
     private Tile currentTile;
-    private Tile goalTile;
 
     [Header("Decision Timer")]
     public Image decisionTimerBar;      // UI fill bar (assign in Inspector)
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviour
 
         FuelSystem.Instance.ResetFuel(); 
         // Reset all tiles before starting a new game
-        gridManager.ResetAllTiles();
+        //gridManager.ResetAllTiles();
 
         if (playerObject != null)
         {
@@ -45,18 +44,10 @@ public class GameManager : MonoBehaviour
             playerObject = null;
         }
 
-        goalTile = null;
-
-        // Set a random goal tile (top row)
-        int goalX = Random.Range(0, gridManager.width);
-        int goalY = gridManager.height - 1;
-        goalTile = gridManager.GetTile(goalX, goalY);
-        goalTile.BecomeRevealed();
-        goalTile.SetAsGoal();
-
         // Set a random start tile (bottom row)
         int startX = Random.Range(0, gridManager.width);
-        int startY = 0;
+        int startY = Random.Range(0, gridManager.height);
+
         Tile startTile = gridManager.GetTile(startX, startY);
         startTile.BecomeRevealed();
 
@@ -90,19 +81,15 @@ public class GameManager : MonoBehaviour
         currentTile.ExitTile();
         lastTile = currentTile;
 
+        hasMoved = true;
+
         currentTile = tile;
         playerObject.transform.position = tile.transform.position + new Vector3(0, 0, -1);
-
-        if (tile == goalTile)
-        {
-            Debug.Log("🎉 You reached the goal!");
-            StopDecisionTimer();
-            return;
-        }
 
         RevealAdjacentTiles(currentTile);
         RestartDecisionTimer(); // Restart timer for next move
     }
+
 
     void RevealAdjacentTiles(Tile tile)
     {
@@ -138,6 +125,7 @@ public class GameManager : MonoBehaviour
     {
         return (Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y)) == 1;
     }
+
 
     void UpdateTimerBar(float percent)
     {

@@ -8,7 +8,7 @@ public class TileEvents : MonoBehaviour
     public bool OneTimeEffect;
     bool triggered;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         attachedTile = GetComponent<Tile>();
 
@@ -18,7 +18,7 @@ public class TileEvents : MonoBehaviour
             attachedTile.OnExitTile += TriggerEffect;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if (triggerOnEnter)
             attachedTile.OnEnterTile -= TriggerEffect;

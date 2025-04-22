@@ -19,9 +19,17 @@ public class Tile : MonoBehaviour
 
     public Sprite sprite_back, sprite_front;
 
+    [Multiline] public string infoCursor;
+    [TextArea] public string infoDescription;
+
     public delegate void TileEvent();
     public TileEvent OnEnterTile, OnExitTile;
     public static TileEvent OnChecked;
+
+    public delegate void InfoEvent(Tile tile);
+    public static InfoEvent CursorInEvent, CursorOutEvent;
+    public static InfoEvent DescriptionEvent;
+
 
     Color defaultColor;
 
@@ -104,6 +112,16 @@ public class Tile : MonoBehaviour
         print("Exiting tile x " + x + ", y " + y);
     }
 
+    private void OnMouseEnter()
+    {
+        CursorInEvent?.Invoke(this);
+    }
+
+    private void OnMouseExit()
+    {
+        CursorOutEvent?.Invoke(this);
+    }
+
     private void OnMouseDown()
     {
 
@@ -133,6 +151,7 @@ public class Tile : MonoBehaviour
                     //ExecuteEvent
                     print("Entering tile x " + x + ", y " + y);
                     OnEnterTile?.Invoke();
+                    DescriptionEvent?.Invoke(this);
                 }
                 break;
         }

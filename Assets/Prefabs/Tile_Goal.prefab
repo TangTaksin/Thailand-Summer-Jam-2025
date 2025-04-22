@@ -17,6 +17,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: infoCursor
+      value: Destination
+      objectReference: {fileID: 0}
+    - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: sprite_front
       value: 
       objectReference: {fileID: 1548094874801307909, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
@@ -98,4 +102,3 @@ MonoBehaviour:
   OneTimeEffect: 0
   unlockedGoalSprite: {fileID: 1548094874801307909, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
   lockedGoalSprite: {fileID: 3020055004632201074, guid: cfa045e3925ed424ab03185a8c7fcc48, type: 3}
-  tileNeeded: 30

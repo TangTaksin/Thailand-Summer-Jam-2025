@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2098135986438730418}
   - component: {fileID: -3383271767373157736}
   - component: {fileID: -2287508940739269031}
+  - component: {fileID: -4206417239067830007}
   m_Layer: 0
   m_Name: tile_red
   m_TagString: Untagged
@@ -154,6 +155,8 @@ MonoBehaviour:
   state: 0
   sprite_back: {fileID: 2492584800609947049, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
   sprite_front: {fileID: -3414027690778095926, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  infoCursor: Gas -2
+  infoDescription: 
 --- !u!114 &-3383271767373157736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,3 +189,19 @@ MonoBehaviour:
   triggerOnExit: 0
   OneTimeEffect: 1
   newSprite: {fileID: -3581255935039853656, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+--- !u!114 &-4206417239067830007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227181531956728071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8407522edf54df6468f773ff3696fc17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOnEnter: 1
+  triggerOnExit: 0
+  OneTimeEffect: 1
+  newCursorInfo: 

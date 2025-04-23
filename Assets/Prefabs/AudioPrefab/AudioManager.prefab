@@ -181,6 +181,10 @@ MonoBehaviour:
   ambientSource: {fileID: 4009720901657387322}
   sfxSource: {fileID: 7799966030440228392}
   music_Bg: {fileID: 8300000, guid: a6a643ca6d58f8546bc237609b0913bd, type: 3}
+  open_Tile_SFX: {fileID: 8300000, guid: e7a01122cd746274a9c9951b71edac0b, type: 3}
+  player_Step_On_Tile: {fileID: 8300000, guid: d9c36fe46b19f144199a85e3690a4562, type: 3}
+  lose_Fuel_SFX: {fileID: 0}
+  gain_Fuel_SFX: {fileID: 0}
   minTimeBetween: 0.3
   maxTimeBetween: 0.4
   minPitch: 0.8
@@ -519,11 +523,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088535404938275177, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 882.8
+      value: 840
       objectReference: {fileID: 0}
     - target: {fileID: 1088535404938275177, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 337.6
+      value: 441
       objectReference: {fileID: 0}
     - target: {fileID: 1112373771388262015, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -783,12 +787,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5297887883800897637, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
       propertyPath: m_Type
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5297887883800897637, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -709548207, guid: 01524b9c7fa231e4a91903079199364f, type: 3}
+      objectReference: {fileID: 21300000, guid: 1a64d231c5711d0468d0a65cca4e38e2, type: 3}
     - target: {fileID: 5297887883800897637, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
       propertyPath: m_Color.b
       value: 1

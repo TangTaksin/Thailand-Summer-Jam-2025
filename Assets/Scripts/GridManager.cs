@@ -15,11 +15,17 @@ public class GridManager : MonoBehaviour
     List<int> tileLimitTrackers = new List<int>();
 
     public delegate void GridManagerEvent();
-    public static GridManagerEvent OnGenerated; 
+    public static GridManagerEvent OnGenerated;
+
+    void Awake()
+    {
+        GetLimit();
+
+    }
 
     void Start()
     {
-        GetLimit();
+
     }
 
     void GetLimit()
@@ -87,7 +93,7 @@ public class GridManager : MonoBehaviour
         float top = 0;
         var ite = 0;
 
-        for(int i = 0; tileList.Length > i; i++)
+        for (int i = 0; tileList.Length > i; i++)
         {
             if (tileLimitTrackers[i] > 0)
                 range += tileList[i].spawnChance;
@@ -99,7 +105,7 @@ public class GridManager : MonoBehaviour
         foreach (var tile in tileList)
         {
             //print("checking " + tile.tilePrefab.name + " limits.");
-            if (tileLimitTrackers[ite]<=0)
+            if (tileLimitTrackers[ite] <= 0)
             {
                 //print("skipping " + tile.tilePrefab.name);
                 ite++;
@@ -142,15 +148,15 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public (int,int,int) TileStatusCounter()
+    public (int, int, int) TileStatusCounter()
     {
         int obscure = 0;
         int reveal = 0;
         int check = 0;
 
-        foreach(var tile in tileObjects)
+        foreach (var tile in tileObjects)
         {
-            switch(tile.state)
+            switch (tile.state)
             {
                 case Tile.TileState.Obscured:
                     obscure++;

@@ -3,6 +3,7 @@ using UnityEngine;
 public class ResultPanel : MonoBehaviour
 {
     public GameObject resultpanel;
+    public GameObject uiPanel;
 
     private void OnEnable()
     {
@@ -17,11 +18,14 @@ public class ResultPanel : MonoBehaviour
 
     public void CallResultPanel()
     {
+        GameManager.Instance.WinGame();
         resultpanel.SetActive(true);
+        uiPanel.SetActive(false);
     }
 
     public void CloseResoutPanel()
     {
         resultpanel.SetActive(false);
+        uiPanel.SetActive(true);
     }
 }

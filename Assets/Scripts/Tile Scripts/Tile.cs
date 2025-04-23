@@ -74,7 +74,7 @@ public class Tile : MonoBehaviour
                 sr.color = defaultColor;
                 break;
             case TileState.Revealed:
-                sr.color = defaultColor/2;
+                sr.color = defaultColor / 2;
                 break;
             case TileState.Checked:
                 sr.sprite = sprite_front;
@@ -139,6 +139,8 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (GameManager.Instance.IsGameWon)
+            return;
 
         switch (state)
         {

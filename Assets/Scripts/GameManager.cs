@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public GridManager gridManager;
     public GameObject playerPrefab;
-    public Button startButton;
+    public Button reStartButton;
 
     private GameObject playerObject;
     [HideInInspector] public Tile lastTile;
@@ -21,14 +21,20 @@ public class GameManager : MonoBehaviour
     private bool hasMoved = false;
     private Coroutine decisionTimerCoroutine;
     private Coroutine fillAnimationCoroutine;
+    public bool IsGameWon { get; private set; }
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        if (startButton != null)
-            startButton.onClick.AddListener(StartGame);
+        if (reStartButton != null)
+            reStartButton.onClick.AddListener(StartGame);
+    }
+
+    void Start()
+    {
+        StartGame();
     }
 
     public void StartGame()
@@ -59,6 +65,11 @@ public class GameManager : MonoBehaviour
 
         RevealAdjacentTiles(currentTile);
         RestartDecisionTimer(); // Start first decision timer
+    }
+
+    public void WinGame()
+    {
+        IsGameWon = true;
     }
 
     public bool CanReveal(Tile tile)

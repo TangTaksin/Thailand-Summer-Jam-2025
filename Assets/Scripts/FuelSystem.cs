@@ -21,6 +21,9 @@ public class FuelSystem : MonoBehaviour
     public AudioSource lowFuelSound;
     public AudioSource emptyFuelSound;
 
+    [Header("Game Over Settings")]
+    public GameObject losePanel; // Assign this in the Inspector
+
     private float targetAngle;
     private bool lowFuelWarningPlayed = false;
     private bool emptyFuelPlayed = false;
@@ -33,6 +36,7 @@ public class FuelSystem : MonoBehaviour
 
     private void Start()
     {
+        losePanel.SetActive(false);
         SetTargetAngle();
     }
 
@@ -99,6 +103,9 @@ public class FuelSystem : MonoBehaviour
             {
                 emptyFuelSound.Play();
                 emptyFuelPlayed = true;
+
+                if (losePanel != null)
+                    losePanel.SetActive(true); // Show the lose panel
             }
 
             return; // Don't shake or warn if out of fuel

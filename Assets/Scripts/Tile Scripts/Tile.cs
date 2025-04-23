@@ -20,7 +20,10 @@ public class Tile : MonoBehaviour
     public Sprite sprite_back, sprite_front;
 
     [Multiline] public string infoCursor;
-    [TextArea] public string infoDescription;
+
+    [HideInInspector] public string infoDescription;
+    [TextArea] public string[] descriptionVariants;
+
 
     public delegate void TileEvent();
     public TileEvent OnEnterTile, OnExitTile;
@@ -43,6 +46,17 @@ public class Tile : MonoBehaviour
         defaultColor = sr.color;
 
         UpdateTileAppearance();
+        RandomizeDescription();
+    }
+
+    public void RandomizeDescription()
+    {
+        if (descriptionVariants.Length > 0)
+        {
+            var chosenIndex = UnityEngine.Random.Range(0, descriptionVariants.Length);
+            print(chosenIndex);
+            infoDescription = descriptionVariants[chosenIndex];
+        }
     }
 
     public void UpdateTileAppearance()

@@ -108,6 +108,7 @@ MonoBehaviour:
   sprite_front: {fileID: -3581255935039853656, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
   infoCursor: 
   infoDescription: 
+  descriptionVariants: []
 --- !u!61 &-904998606604669066
 BoxCollider2D:
   m_ObjectHideFlags: 0

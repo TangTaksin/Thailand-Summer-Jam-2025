@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3383271767373157736}
   - component: {fileID: -2287508940739269031}
   - component: {fileID: -4206417239067830007}
+  - component: {fileID: 3806257057606946228}
   m_Layer: 0
   m_Name: tile_red
   m_TagString: Untagged
@@ -156,7 +157,27 @@ MonoBehaviour:
   sprite_back: {fileID: 2492584800609947049, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
   sprite_front: {fileID: -3414027690778095926, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
   infoCursor: Gas -2
-  infoDescription: 
+  infoDescription: 'Circling around looking for the hotel 3 times
+
+    because the
+    sign was too small.'
+  descriptionVariants:
+  - "Drove past the gas station because \nI was too busy taking pictures of the view."
+  - GPS led me down an unpaved road.
+  - "Circling around looking for \nthe hotel 3 times because \nthe sign was too small."
+  - "Stopped at every photo spot, \neven a utility pole."
+  - "Took a \u201Cshortcut\u201D that actually made the drive longer."
+  - "Drove past my destination because \nI was too busy singing along to the music."
+  - "Stopped to buy coffee, \nbut my friend took 40 minutes \nto take pictures."
+  - "Turned on the AC while \nwaiting for my friend to wake up, \nDrained away the
+    fuel."
+  - "Got lost and ended up \nin the wrong village."
+  - 'Stuck in traffic because
+
+    someone was taking pictures
+
+    in the middle
+    of the road.'
 --- !u!114 &-3383271767373157736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,3 +226,19 @@ MonoBehaviour:
   triggerOnExit: 0
   OneTimeEffect: 1
   newCursorInfo: 
+--- !u!114 &3806257057606946228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227181531956728071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9223608ea26496744975144547419407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOnEnter: 0
+  triggerOnExit: 1
+  OneTimeEffect: 1
+  newDescInfo: 

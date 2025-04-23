@@ -153,6 +153,8 @@ MonoBehaviour:
   state: 0
   sprite_back: {fileID: 2492584800609947049, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
   sprite_front: {fileID: 5197212492450615380, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  infoCursor: Blockage
+  infoDescription: 
 --- !u!114 &3079053601601729426
 MonoBehaviour:
   m_ObjectHideFlags: 0

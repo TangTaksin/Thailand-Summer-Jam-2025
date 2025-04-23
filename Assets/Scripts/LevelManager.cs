@@ -29,6 +29,10 @@ public class LevelManager : MonoBehaviour
             Debug.Log("🎉 All levels cleared!");
             SceneManager.LoadScene("EndScene");
         }
+        else
+        {
+            SceneManager.LoadScene("1.MainMenu");
+        }
     }
 
     public void UpdateLevelSelectUI()

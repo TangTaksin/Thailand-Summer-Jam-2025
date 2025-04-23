@@ -9,6 +9,7 @@ public class SceneFlowManager : MonoBehaviour
 
     public static void TriggerLoadScene(string _scneName)
     {
+         Time.timeScale = 1f;
         if (!transitioning)
         {
             _refScene = _scneName;

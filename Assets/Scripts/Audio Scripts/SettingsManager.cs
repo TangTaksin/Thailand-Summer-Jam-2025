@@ -24,11 +24,27 @@ public class SettingsManager : MonoBehaviour
         canvasGroup = settingPanel.GetComponent<CanvasGroup>();
         _animator = settingPanel.GetComponent<Animator>();
         _animator.enabled = false;
+
+        settingPanel.SetActive(false); // Reset panel on load
+        isPanelOpen = false;
+        isAnimating = false;
+        Time.timeScale = 1f; // Just in case
+
+
     }
 
     void Start()
     {
+        if (!PlayerPrefs.HasKey("musicVolume"))
+            PlayerPrefs.SetFloat("musicVolume", 0.5f);
+        if (!PlayerPrefs.HasKey("ambientVolume"))
+            PlayerPrefs.SetFloat("ambientVolume", 0.5f);
+        if (!PlayerPrefs.HasKey("sfxVolume"))
+            PlayerPrefs.SetFloat("sfxVolume", 0.5f);
         LoadVolume();
+        // Safety check for interactivity
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
     }
 
     private void Update()
@@ -65,9 +81,9 @@ public class SettingsManager : MonoBehaviour
     {
         Debug.Log("Loading volume");
 
-        float musicVol = Mathf.Clamp(PlayerPrefs.GetFloat("musicVolume", 1.0f), 0.0001f, 1f);
-        float ambientVol = Mathf.Clamp(PlayerPrefs.GetFloat("ambientVolume", 1.0f), 0.0001f, 1f);
-        float sfxVol = Mathf.Clamp(PlayerPrefs.GetFloat("sfxVolume", 1.0f), 0.0001f, 1f);
+        float musicVol = Mathf.Clamp(PlayerPrefs.GetFloat("musicVolume", 0.5f), 0.0001f, 1f);
+        float ambientVol = Mathf.Clamp(PlayerPrefs.GetFloat("ambientVolume", 0.5f), 0.0001f, 1f);
+        float sfxVol = Mathf.Clamp(PlayerPrefs.GetFloat("sfxVolume", 0.5f), 0.0001f, 1f);
 
         musicSlider.value = musicVol;
         ambientSlider.value = ambientVol;

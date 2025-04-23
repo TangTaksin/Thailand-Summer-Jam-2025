@@ -18,8 +18,9 @@ public class GameManager : MonoBehaviour
     public Image decisionTimerBar;      // UI fill bar (assign in Inspector)
     public float decisionTime = 5f;     // How long the player has to decide
     public float fuelPenalty = 5f;      // Fuel lost if timer runs out
-    private Coroutine decisionTimerCoroutine;
     private bool hasMoved = false;
+    private Coroutine decisionTimerCoroutine;
+    private Coroutine fillAnimationCoroutine;
 
     private void Awake()
     {
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         gridManager.GenerateGrid();
 
-        FuelSystem.Instance.ResetFuel(); 
+        FuelSystem.Instance.ResetFuel();
         // Reset all tiles before starting a new game
         //gridManager.ResetAllTiles();
 
@@ -129,10 +130,12 @@ public class GameManager : MonoBehaviour
 
     void UpdateTimerBar(float percent)
     {
-        if (decisionTimerBar != null)
-        {
-            decisionTimerBar.fillAmount = percent;
-        }
+        if (decisionTimerBar == null) return;
+
+        if (fillAnimationCoroutine != null)
+            StopCoroutine(fillAnimationCoroutine);
+
+        fillAnimationCoroutine = StartCoroutine(SmoothFill(percent));
     }
 
     IEnumerator DecisionTimer()
@@ -174,5 +177,21 @@ public class GameManager : MonoBehaviour
             StopCoroutine(decisionTimerCoroutine);
             decisionTimerCoroutine = null;
         }
+    }
+
+    IEnumerator SmoothFill(float target)
+    {
+        float duration = 0.2f; // Smoothness speed (adjust as needed)
+        float start = decisionTimerBar.fillAmount;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            decisionTimerBar.fillAmount = Mathf.Lerp(start, target, elapsed / duration);
+            yield return null;
+        }
+
+        decisionTimerBar.fillAmount = target;
     }
 }

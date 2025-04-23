@@ -10,6 +10,8 @@ public class MangaViewer : MonoBehaviour
 
     private int index = 0;
     private bool isTransitioning = false;
+    public Color targetColor;
+    public float timeHighlightEffect;
 
     void Start()
     {
@@ -48,6 +50,7 @@ public class MangaViewer : MonoBehaviour
         {
             Debug.Log("All panels shown.");
             // Optional: Add a delay and auto load, or show a UI button
+            StartCoroutine(HighlightEffect(displayImages[displayImages.Length - 1]));
         }
     }
 
@@ -69,6 +72,21 @@ public class MangaViewer : MonoBehaviour
         }
         cg.alpha = 1;
         isTransitioning = false;
+    }
+
+    private IEnumerator HighlightEffect(Image img)
+    {
+        CanvasGroup cg = img.GetComponent<CanvasGroup>();
+        float t = 0f;
+        Color originalColor = img.color;
+
+        while (true)
+        {
+            t += Time.deltaTime * 2f;
+            float lerp = Mathf.PingPong(t/timeHighlightEffect, .5f);
+            img.color = Color.Lerp(originalColor, targetColor, lerp);
+            yield return null;
+        }
     }
 
     private void EnsureCanvasGroup(Image img)

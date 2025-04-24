@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 7319550241701796598}
   - component: {fileID: 4189132761948539803}
   - component: {fileID: 2098135986438730418}
-  - component: {fileID: 1333827949613637425}
-  - component: {fileID: 4561046622254207753}
-  - component: {fileID: 5090974922203116484}
-  - component: {fileID: 3185630681420418973}
+  - component: {fileID: -3383271767373157736}
+  - component: {fileID: -2287508940739269031}
+  - component: {fileID: -4206417239067830007}
+  - component: {fileID: 3806257057606946228}
   m_Layer: 0
-  m_Name: tile_green
+  m_Name: tile_red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 610500297939246565, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+  m_Sprite: {fileID: -4684333735789482159, guid: 622ec7bf48153e4439ebc6833bacc932, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &4189132761948539803
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.9375}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -154,30 +154,31 @@ MonoBehaviour:
   x: 0
   y: 0
   state: 0
-  sprite_back: {fileID: 2492584800609947049, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
-  sprite_front: {fileID: 610500297939246565, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
-  infoCursor: Gas +10
-  infoDescription: "Stopped at a gas station, \nfound a deal \u2014 fill up 500,
-    \nget 100 free."
-  descriptionVariants:
-  - "Stopped at a gas station,\nfound a deal \u2014 \n\"fill up 500, get 100 free\"."
-  - "Ran into an old friend working at the station \u2014 \ngave me a free refill
-    for some reason!"
-  - "Saw a fuel truck flipped on the side of the road \u2014 \nthe smell in the air
-    felt like I was getting free gas."
-  - "Dreamed that my tank was full \u2014 \nwoke up, and it really is full!"
-  - "Drove past a lightning strike \u2014\nthe car sped up as if it was charging
-    itself."
-  - "Heavy rain, the car floated like a boat \u2014\nWater fill the tank.\n(The car
-    stills work for some reasons.)"
-  - "The old man by the road gave me \nfree gas because \"I had a good face.\""
-  - 'The view was so inspiring that
+  sprite_back: {fileID: -8015074620469314830, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+  sprite_front: {fileID: -2879805804115278466, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+  infoCursor: Gas -2
+  infoDescription: 'Circling around looking for the hotel 3 times
 
-    I just kept driving further.'
-  - "Parked the car for a moment, \nThen somehow my fuel increased \n(Must be a miracle!)."
-  - "Drove into a shadow,\nand the car just got faster \u2014\nlike it had some mysterious
-    power."
---- !u!114 &1333827949613637425
+    because the
+    sign was too small.'
+  descriptionVariants:
+  - "Drove past the gas station because \nI was too busy taking pictures of the view."
+  - GPS led me down an unpaved road.
+  - "Circling around looking for \nthe hotel 3 times because \nthe sign was too small."
+  - "Stopped at every photo spot, \neven a utility pole."
+  - "Took a \u201Cshortcut\u201D that actually made the drive longer."
+  - "Drove past my destination because \nI was too busy singing along to the music."
+  - "Stopped to buy coffee, \nbut my friend took 40 minutes \nto take pictures."
+  - "Turned on the AC while \nwaiting for my friend to wake up, \nDrained away the
+    fuel."
+  - "Got lost and ended up \nin the wrong village."
+  - 'Stuck in traffic because
+
+    someone was taking pictures
+
+    in the middle
+    of the road.'
+--- !u!114 &-3383271767373157736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,14 +187,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1227181531956728071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b7094890ce3f3046bdd22e545bf054f, type: 3}
+  m_Script: {fileID: 11500000, guid: d6902a3e7550829499aff2a804bd279f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggerOnEnter: 1
   triggerOnExit: 0
   OneTimeEffect: 1
-  refillAmount: 10
---- !u!114 &4561046622254207753
+  depleteAmount: 2
+--- !u!114 &-2287508940739269031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,8 +209,8 @@ MonoBehaviour:
   triggerOnEnter: 1
   triggerOnExit: 0
   OneTimeEffect: 1
-  newSprite: {fileID: -3581255935039853656, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
---- !u!114 &5090974922203116484
+  newSprite: {fileID: 1537639158339094691, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+--- !u!114 &-4206417239067830007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,7 +226,7 @@ MonoBehaviour:
   triggerOnExit: 0
   OneTimeEffect: 1
   newCursorInfo: 
---- !u!114 &3185630681420418973
+--- !u!114 &3806257057606946228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

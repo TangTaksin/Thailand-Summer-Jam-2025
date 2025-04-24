@@ -25,9 +25,13 @@ PrefabInstance:
       value: rest spot
       objectReference: {fileID: 0}
     - target: {fileID: 2098135986438730418, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
+      propertyPath: sprite_back
+      value: 
+      objectReference: {fileID: -8015074620469314830, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+    - target: {fileID: 2098135986438730418, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
       propertyPath: sprite_front
       value: 
-      objectReference: {fileID: -4451010144067442167, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+      objectReference: {fileID: -3250029994485753652, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
     - target: {fileID: 2098135986438730418, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
       propertyPath: infoDescription
       value: "Stopped at a scenic viewpoint, \nasked someone nearby \nto take a photo\nthe
@@ -84,11 +88,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4189132761948539803, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.0625
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4189132761948539803, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.96875
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4657734391276292460, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -133,7 +137,11 @@ PrefabInstance:
     - target: {fileID: 7319550241701796598, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4451010144067442167, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+      objectReference: {fileID: -8780901137149028769, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+    - target: {fileID: 7319550241701796598, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2287508940739269031, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
     - {fileID: -3383271767373157736, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}

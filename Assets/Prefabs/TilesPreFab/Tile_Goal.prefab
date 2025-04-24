@@ -9,8 +9,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -904998606604669066, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -904998606604669066, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -904998606604669066, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.9375
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: state
@@ -21,17 +29,33 @@ PrefabInstance:
       value: Destination
       objectReference: {fileID: 0}
     - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: sprite_back
+      value: 
+      objectReference: {fileID: -8015074620469314830, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+    - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: sprite_front
       value: 
-      objectReference: {fileID: 1548094874801307909, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+      objectReference: {fileID: -1577861161398011843, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
     - target: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: m_Name
       value: Tile_Goal
       objectReference: {fileID: 0}
     - target: {fileID: 2176603702908046622, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176603702908046622, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176603702908046622, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1548094874801307909, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
+      objectReference: {fileID: -537749870668139058, guid: 622ec7bf48153e4439ebc6833bacc932, type: 3}
+    - target: {fileID: 2176603702908046622, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3945932785347903894, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -100,5 +124,5 @@ MonoBehaviour:
   triggerOnEnter: 1
   triggerOnExit: 0
   OneTimeEffect: 0
-  unlockedGoalSprite: {fileID: 1548094874801307909, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
-  lockedGoalSprite: {fileID: 3020055004632201074, guid: cfa045e3925ed424ab03185a8c7fcc48, type: 3}
+  unlockedGoalSprite: {fileID: 5991608244071835660, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+  lockedGoalSprite: {fileID: -1577861161398011843, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}

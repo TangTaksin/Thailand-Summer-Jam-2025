@@ -74,7 +74,7 @@ public class Tile : MonoBehaviour
                 sr.color = defaultColor;
                 break;
             case TileState.Revealed:
-                sr.color = defaultColor / 2;
+                sr.color = defaultColor / 1.75f;
                 break;
             case TileState.Checked:
                 sr.sprite = sprite_front;

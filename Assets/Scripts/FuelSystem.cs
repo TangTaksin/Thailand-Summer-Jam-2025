@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FuelSystem : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class FuelSystem : MonoBehaviour
     [Header("Fuel Settings")]
     public float maxFuel = 100f;
     public float currentFuel = 100f;
+    public TextMeshProUGUI fuelText;
+
+    [Header("Play Time UI")]
+    public TextMeshProUGUI playTime;
 
     [Header("Needle UI")]
     public RectTransform fuelNeedle;
@@ -23,12 +28,14 @@ public class FuelSystem : MonoBehaviour
     public AudioSource emptyFuelSound;
 
     [Header("Game Over Settings")]
-    public GameObject losePanel; // Assign this in the Inspector
+    public GameObject losePanel;
     public GameObject[] uiGameplay;
 
     private float targetAngle;
     private bool lowFuelWarningPlayed = false;
     private bool emptyFuelPlayed = false;
+    private float elapsedTime = 0f;
+    private bool isGameOver = false;
 
     private void Awake()
     {
@@ -47,6 +54,28 @@ public class FuelSystem : MonoBehaviour
         SmoothRotateNeedle();
         UpdateNeedleColor();
         HandleLowFuelEffects();
+        UpdateFuelText();
+        UpdatePlayTime();
+    }
+
+    private void UpdateFuelText()
+    {
+        if (fuelText != null)
+            fuelText.text = Mathf.CeilToInt(currentFuel).ToString();
+    }
+
+    private void UpdatePlayTime()
+    {
+        if (isGameOver || GameManager.Instance.IsGameWon) return;
+
+        elapsedTime += Time.deltaTime;
+
+        if (playTime != null)
+        {
+            int minutes = Mathf.FloorToInt(elapsedTime / 60f);
+            int seconds = Mathf.FloorToInt(elapsedTime % 60f);
+            playTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
     }
 
     public bool UseFuel(float amount)
@@ -66,6 +95,7 @@ public class FuelSystem : MonoBehaviour
         currentFuel = Mathf.Clamp(currentFuel + amount, 0, maxFuel);
         lowFuelWarningPlayed = false;
         emptyFuelPlayed = false;
+        isGameOver = false;
         SetTargetAngle();
     }
 
@@ -78,7 +108,7 @@ public class FuelSystem : MonoBehaviour
     private void SmoothRotateNeedle()
     {
         float z = Mathf.LerpAngle(fuelNeedle.localEulerAngles.z, targetAngle, Time.deltaTime * needleSpeed);
-        fuelNeedle.localEulerAngles = new Vector3(0f, 0f, z); // Use localEulerAngles for RectTransform as well
+        fuelNeedle.localEulerAngles = new Vector3(0f, 0f, z);
     }
 
     private void UpdateNeedleColor()
@@ -105,16 +135,15 @@ public class FuelSystem : MonoBehaviour
             {
                 emptyFuelSound.Play();
                 emptyFuelPlayed = true;
+                isGameOver = true;
 
                 if (losePanel != null)
                     uiGameplay[0].SetActive(false);
                 uiGameplay[1].SetActive(false);
-                losePanel.SetActive(true); // Show the lose panel
-
-
+                losePanel.SetActive(true);
             }
 
-            return; // Don't shake or warn if out of fuel
+            return;
         }
 
         if (currentFuel <= lowFuelThreshold)
@@ -135,6 +164,8 @@ public class FuelSystem : MonoBehaviour
         currentFuel = maxFuel;
         lowFuelWarningPlayed = false;
         emptyFuelPlayed = false;
+        elapsedTime = 0f;
+        isGameOver = false;
 
         if (lowFuelSound != null) lowFuelSound.Stop();
         if (emptyFuelSound != null) emptyFuelSound.Stop();

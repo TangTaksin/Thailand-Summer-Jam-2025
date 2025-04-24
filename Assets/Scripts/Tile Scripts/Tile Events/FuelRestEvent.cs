@@ -4,7 +4,7 @@ public class FuelRestEvent : TileEvents
 {
     bool inEffect;
 
-    protected override void Effect()
+    public override void Effect()
     {
         inEffect = !inEffect;
 

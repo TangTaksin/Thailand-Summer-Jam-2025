@@ -35,7 +35,7 @@ public class GoalEvent : TileEvents
         Tile.OnChecked -= TileCheck; 
     }
 
-    protected override void Effect()
+    public override void Effect()
     {
         var GMInstance = GameManager.Instance;
 

@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class TileEvents : MonoBehaviour
 {
-    Tile attachedTile;
+    protected Tile attachedTile;
 
     public bool triggerOnEnter, triggerOnExit;
     public bool OneTimeEffect;
-    bool triggered;
+    protected bool triggered = false;
 
     protected virtual void OnEnable()
     {
+        Init();
+    }
+
+    public virtual void Init()
+    {
         attachedTile = GetComponent<Tile>();
+        
 
         if (triggerOnEnter)
             attachedTile.OnEnterTile += TriggerEffect;
@@ -28,6 +34,8 @@ public class TileEvents : MonoBehaviour
 
     public void TriggerEffect()
     {
+        print(name + " triggered: " + triggered);
+
         if (!triggered)
         {
             Effect();
@@ -37,7 +45,7 @@ public class TileEvents : MonoBehaviour
         }
     }
 
-    protected virtual void Effect()
+    public virtual void Effect()
     {
 
     }

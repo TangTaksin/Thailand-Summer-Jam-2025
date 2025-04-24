@@ -2323,6 +2323,9 @@ MonoBehaviour:
   - tilePrefab: {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
     limitPerMap: 10
     spawnChance: 20
+  - tilePrefab: {fileID: 740241723830525950, guid: 1fb9c19cdf0c972459b4f12eecb62fb8, type: 3}
+    limitPerMap: 10
+    spawnChance: 20
   - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
     limitPerMap: 30
     spawnChance: 40

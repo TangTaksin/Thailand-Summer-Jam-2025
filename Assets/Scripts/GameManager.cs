@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private bool hasMoved = false;
     private Coroutine decisionTimerCoroutine;
     private Coroutine fillAnimationCoroutine;
+    public GameObject[] uiGameplay;
     public bool IsGameWon { get; private set; }
 
     private void Awake()
@@ -34,11 +35,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StartGame();
+        uiGameplay[0].SetActive(false);
     }
 
     public void StartGame()
     {
+        uiGameplay[0].SetActive(true);
+        uiGameplay[1].SetActive(true);
         gridManager.GenerateGrid();
 
         FuelSystem.Instance.ResetFuel();
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        uiGameplay[1].SetActive(false);
         IsGameWon = true;
     }
 

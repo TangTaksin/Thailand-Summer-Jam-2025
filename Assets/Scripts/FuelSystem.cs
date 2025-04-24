@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FuelSystem : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class FuelSystem : MonoBehaviour
     public float currentFuel = 100f;
 
     [Header("Needle UI")]
-    public Transform fuelNeedle;
-    public SpriteRenderer needleRenderer;
+    public RectTransform fuelNeedle;
+    public Image needleRenderer;
     public float fullAngle = 55f;
     public float emptyAngle = -55f;
     public float needleSpeed = 5f;
@@ -23,6 +24,7 @@ public class FuelSystem : MonoBehaviour
 
     [Header("Game Over Settings")]
     public GameObject losePanel; // Assign this in the Inspector
+    public GameObject[] uiGameplay;
 
     private float targetAngle;
     private bool lowFuelWarningPlayed = false;
@@ -76,7 +78,7 @@ public class FuelSystem : MonoBehaviour
     private void SmoothRotateNeedle()
     {
         float z = Mathf.LerpAngle(fuelNeedle.localEulerAngles.z, targetAngle, Time.deltaTime * needleSpeed);
-        fuelNeedle.localRotation = Quaternion.Euler(0f, 0f, z);
+        fuelNeedle.localEulerAngles = new Vector3(0f, 0f, z); // Use localEulerAngles for RectTransform as well
     }
 
     private void UpdateNeedleColor()
@@ -105,7 +107,11 @@ public class FuelSystem : MonoBehaviour
                 emptyFuelPlayed = true;
 
                 if (losePanel != null)
-                    losePanel.SetActive(true); // Show the lose panel
+                    uiGameplay[0].SetActive(false);
+                uiGameplay[1].SetActive(false);
+                losePanel.SetActive(true); // Show the lose panel
+
+
             }
 
             return; // Don't shake or warn if out of fuel

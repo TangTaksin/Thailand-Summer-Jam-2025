@@ -3439,7 +3439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileList:
   - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
-    limitPerMap: 12
+    limitPerMap: 14
     spawnChance: 50
   - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
     limitPerMap: 6
@@ -3448,7 +3448,7 @@ MonoBehaviour:
     limitPerMap: 3
     spawnChance: 14
   - tilePrefab: {fileID: 1227181531956728071, guid: 2fe33c3ac24ea274390418d9775af9c9, type: 3}
-    limitPerMap: 5
+    limitPerMap: 4
     spawnChance: 17
   - tilePrefab: {fileID: 6503503527275886636, guid: d76dcb00211de3544b29cad7437e2d44, type: 3}
     limitPerMap: 1
@@ -5692,8 +5692,8 @@ SceneRoots:
   - {fileID: 1205874177}
   - {fileID: 121418988}
   - {fileID: 1915837799}
-  - {fileID: 736005198}
   - {fileID: 586682807}
+  - {fileID: 736005198}
   - {fileID: 1731611241}
   - {fileID: 1676460375}
   - {fileID: 472758826}

@@ -170,4 +170,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerOnEnter: 1
   triggerOnExit: 0
-  OneTimeEffect: 1
+  OneTimeEffect: 0

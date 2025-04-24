@@ -74,7 +74,7 @@ public class Tile : MonoBehaviour
                 sr.color = defaultColor;
                 break;
             case TileState.Revealed:
-                sr.color = defaultColor/2;
+                sr.color = new Color(.5f,.5f,0);
                 break;
             case TileState.Checked:
                 sr.sprite = sprite_front;
@@ -153,6 +153,7 @@ public class Tile : MonoBehaviour
                 if (GameManager.Instance.CanMoveTo(this))
                 {
                     BecomeChecked();
+                    CursorInEvent?.Invoke(this);
                     OnChecked?.Invoke();
                 }
                 break;
@@ -165,6 +166,7 @@ public class Tile : MonoBehaviour
                     //ExecuteEvent
                     //print("Entering tile x " + x + ", y " + y);
                     OnEnterTile?.Invoke();
+                    CursorInEvent?.Invoke(this);
                     DescriptionEvent?.Invoke(this);
                 }
                 break;

@@ -776,6 +776,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 6348000699780856807, guid: d9b256aeecc4e464aafcc4f76b742f2d, type: 3}
   startButton: {fileID: 1881397432}
   lastTile: {fileID: 0}
+  currentTile: {fileID: 0}
   decisionTimerBar: {fileID: 745861854}
   decisionTime: 5
   fuelPenalty: 1
@@ -2408,6 +2409,10 @@ MonoBehaviour:
   reticleObj: {fileID: 743082156}
   infoTxt: {fileID: 101142737}
   offsetFromCursor: {x: 0, y: 1}
+  cursorDefault: {fileID: 2800000, guid: fa184fd4a2e3ab04fb3be77052713438, type: 3}
+  cursorInavail: {fileID: 2800000, guid: efb124d5cff3ff24d9e5da02de9f2bc1, type: 3}
+  cursorCheck: {fileID: 2800000, guid: fc40834fa097d4a4099c9ef6e04ac81c, type: 3}
+  cursorWalk: {fileID: 2800000, guid: 896fae22809d52e459239c152174bfe9, type: 3}
 --- !u!114 &1307233764
 MonoBehaviour:
   m_ObjectHideFlags: 0

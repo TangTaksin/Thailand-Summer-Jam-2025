@@ -10,7 +10,7 @@ public class SpriteSwitchEvent : TileEvents
         spriteRen = GetComponent<SpriteRenderer>();
     }
 
-    protected override void Effect()
+    public override void Effect()
     {
         spriteRen.sprite = newSprite;
     }

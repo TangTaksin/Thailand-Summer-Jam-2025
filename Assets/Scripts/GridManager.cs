@@ -70,7 +70,7 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 gridNo++;
-                print(gridNo);
+                //print(gridNo);
 
                 Vector3 pos = new Vector3(x + (x * spacing), y + (y * spacing), 0);
 

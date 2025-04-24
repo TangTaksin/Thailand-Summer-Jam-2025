@@ -10,7 +10,7 @@ public class SwitchInfoEvent : TileEvents
         tile = GetComponent<Tile>();
     }
 
-    protected override void Effect()
+    public override void Effect()
     {
         tile.infoCursor = newCursorInfo;
     }

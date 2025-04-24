@@ -14,7 +14,7 @@ public class Tile : MonoBehaviour
     public int x, y;
     public TileState state = TileState.Obscured;
     private GridManager gridManager;
-    private SpriteRenderer sr;
+    protected SpriteRenderer sr;
     private bool isGoal = false;
 
     public Sprite sprite_back, sprite_front;
@@ -54,7 +54,7 @@ public class Tile : MonoBehaviour
         if (descriptionVariants.Length > 0)
         {
             var chosenIndex = UnityEngine.Random.Range(0, descriptionVariants.Length);
-            print(chosenIndex);
+            //print(chosenIndex);
             infoDescription = descriptionVariants[chosenIndex];
         }
     }
@@ -124,7 +124,7 @@ public class Tile : MonoBehaviour
     public void ExitTile()
     {
         OnExitTile?.Invoke();
-        print("Exiting tile x " + x + ", y " + y);
+        //print("Exiting tile x " + x + ", y " + y);
     }
 
     private void OnMouseEnter()
@@ -156,6 +156,7 @@ public class Tile : MonoBehaviour
                 if (GameManager.Instance.CanMoveTo(this))
                 {
                     BecomeChecked();
+                    CursorInEvent?.Invoke(this);
                     OnChecked?.Invoke();
                 }
                 break;
@@ -167,8 +168,9 @@ public class Tile : MonoBehaviour
                     GameManager.Instance.MovePlayerTo(this);
 
                     //ExecuteEvent
-                    print("Entering tile x " + x + ", y " + y);
+                    //print("Entering tile x " + x + ", y " + y);
                     OnEnterTile?.Invoke();
+                    CursorInEvent?.Invoke(this);
                     DescriptionEvent?.Invoke(this);
                 }
                 break;

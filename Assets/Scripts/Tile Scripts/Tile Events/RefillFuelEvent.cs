@@ -4,8 +4,9 @@ public class RefillFuelEvent : TileEvents
 {
     public float refillAmount;
 
-    protected override void Effect()
+    public override void Effect()
     {
+        print("Refilled for " + refillAmount);
         FuelSystem.Instance.RefillFuel(refillAmount);
     }
 }

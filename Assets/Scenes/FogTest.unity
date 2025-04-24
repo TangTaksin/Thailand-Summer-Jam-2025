@@ -659,6 +659,7 @@ GameObject:
   - component: {fileID: 400501956}
   - component: {fileID: 400501955}
   - component: {fileID: 400501954}
+  - component: {fileID: 400501957}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -740,6 +741,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &400501957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400501953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f4545945f820e4dbe3e5520bc89f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridManager: {fileID: 1205874176}
+  targetToFollow: {x: 0, y: 0}
 --- !u!1 &423935963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,13 +2342,16 @@ MonoBehaviour:
   - tilePrefab: {fileID: 740241723830525950, guid: 1fb9c19cdf0c972459b4f12eecb62fb8, type: 3}
     limitPerMap: 10
     spawnChance: 20
+  - tilePrefab: {fileID: 740241723830525950, guid: 6f06b62f0af2c29419b042e3cc2f6512, type: 3}
+    limitPerMap: 5
+    spawnChance: 30
   - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
     limitPerMap: 30
     spawnChance: 40
   - tilePrefab: {fileID: 6503503527275886636, guid: d76dcb00211de3544b29cad7437e2d44, type: 3}
     limitPerMap: 1
     spawnChance: 100
-  width: 5
+  width: 10
   height: 6
   spacing: 0.1
   tileNeeded: 20

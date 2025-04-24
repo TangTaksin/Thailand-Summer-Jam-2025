@@ -46,15 +46,15 @@ public class CursorInfo : MonoBehaviour
         
         if (tile.state == Tile.TileState.Checked && GameManager.Instance.CanMoveTo(tile))
         {
-            Cursor.SetCursor(cursorWalk, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(cursorWalk, new Vector2(7,7), CursorMode.Auto);
         }
         else if (tile.state == Tile.TileState.Revealed && GameManager.Instance.CanMoveTo(tile))
         {
-            Cursor.SetCursor(cursorCheck, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(cursorCheck, new Vector2(6, 6), CursorMode.Auto);
         }
         else
         {
-            Cursor.SetCursor(cursorInavail, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(cursorInavail, new Vector2(7, 7), CursorMode.Auto);
         }
     }
 

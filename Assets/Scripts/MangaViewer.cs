@@ -31,10 +31,10 @@ public class MangaViewer : MonoBehaviour
 
     void Update()
     {
-        if (!isTransitioning && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
-        {
-            ShowNextPanel();
-        }
+         if (!isTransitioning && (Input.GetMouseButtonDown(0) || Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Space)))
+    {
+        ShowNextPanel();
+    }
     }
 
     public void ShowNextPanel()

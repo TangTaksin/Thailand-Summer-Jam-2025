@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject playerObject;
     [HideInInspector] public Tile lastTile;
-    private Tile currentTile;
+    public Tile currentTile;
 
     [Header("Decision Timer")]
     public Image decisionTimerBar;      // UI fill bar (assign in Inspector)

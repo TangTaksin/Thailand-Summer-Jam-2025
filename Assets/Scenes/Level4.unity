@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14, y: -28}
+  m_AnchoredPosition: {x: -84, y: -28}
   m_SizeDelta: {x: 759.6, y: 397.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11296249
@@ -1304,7 +1304,7 @@ Transform:
   m_GameObject: {fileID: 400501953}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 2.5, z: -10}
+  m_LocalPosition: {x: 4, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1346,6 +1346,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 6348000699780856807, guid: d9b256aeecc4e464aafcc4f76b742f2d, type: 3}
   reStartButton: {fileID: 954496935}
   lastTile: {fileID: 0}
+  currentTile: {fileID: 0}
   decisionTimerBar: {fileID: 1532197941}
   decisionTime: 10
   fuelPenalty: 1
@@ -1379,8 +1380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148adff8f6992bf41bed38dd9228aa70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFuel: 20
-  currentFuel: 20
+  maxFuel: 25
+  currentFuel: 25
   fuelText: {fileID: 230517019}
   playTime: {fileID: 1528688395}
   fuelNeedle: {fileID: 1379311719}
@@ -2415,7 +2416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &586682803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3040,7 +3041,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3439,27 +3440,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileList:
   - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
-    limitPerMap: 14
-    spawnChance: 50
-  - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
-    limitPerMap: 6
-    spawnChance: 13
+    limitPerMap: 18
+    spawnChance: 30
+  - tilePrefab: {fileID: 1227181531956728071, guid: 189c8c626e15ad147a16d9664998da9e, type: 3}
+    limitPerMap: 10
+    spawnChance: 15
+  - tilePrefab: {fileID: 1227181531956728071, guid: 61a33020f2286d546856afe19921c67f, type: 3}
+    limitPerMap: 5
+    spawnChance: 10
   - tilePrefab: {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
-    limitPerMap: 3
-    spawnChance: 14
+    limitPerMap: 6
+    spawnChance: 15
+  - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
+    limitPerMap: 7
+    spawnChance: 13
   - tilePrefab: {fileID: 1227181531956728071, guid: 2fe33c3ac24ea274390418d9775af9c9, type: 3}
-    limitPerMap: 4
-    spawnChance: 17
+    limitPerMap: 3
+    spawnChance: 15
   - tilePrefab: {fileID: 6503503527275886636, guid: d76dcb00211de3544b29cad7437e2d44, type: 3}
     limitPerMap: 1
     spawnChance: 122
   - tilePrefab: {fileID: 960658159913649683, guid: 183b8445fd8d86748a4bd0bf30b1e871, type: 3}
-    limitPerMap: 3
+    limitPerMap: 5
     spawnChance: 7
-  width: 5
+  width: 8
   height: 6
   spacing: 0.1
-  tileNeeded: 30
+  tileNeeded: 48
   tileObjects: []
 --- !u!4 &1205874177
 Transform:
@@ -3470,7 +3477,7 @@ Transform:
   m_GameObject: {fileID: 1205874175}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TileEvents : MonoBehaviour
 {
-    Tile attachedTile;
+    protected Tile attachedTile;
 
     public bool triggerOnEnter, triggerOnExit;
     public bool OneTimeEffect;

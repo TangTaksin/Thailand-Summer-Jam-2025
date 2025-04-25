@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int totalLevel = 4;
     [SerializeField] private Button[] levelButtons;
     [SerializeField] private string[] levelSceneNames;
+    //[SerializeField] private Button resetButton;
     public Image levelNotCleared;
     public Image isLevelCleared;
 

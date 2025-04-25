@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2176603702908046622}
   - component: {fileID: 29230005200199523}
   - component: {fileID: -904998606604669066}
-  - component: {fileID: -5846320704226333475}
+  - component: {fileID: 7704266651359804755}
   m_Layer: 0
-  m_Name: Tile_Slide
+  m_Name: Tile_RandomSouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2135612340236794744, guid: 897fb36396800aa4dac31e0e3479ee04, type: 3}
+  m_Sprite: {fileID: -242552125017271563, guid: e391daf0c905fa04c8f70491a89adefe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &29230005200199523
@@ -106,8 +106,8 @@ MonoBehaviour:
   y: 1
   state: 0
   sprite_back: {fileID: -8015074620469314830, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
-  sprite_front: {fileID: 2135612340236794744, guid: 897fb36396800aa4dac31e0e3479ee04, type: 3}
-  infoCursor: Slippery
+  sprite_front: {fileID: -2694923202371670960, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+  infoCursor: Event
   infoDescription: 
   descriptionVariants: []
 --- !u!61 &-904998606604669066
@@ -148,7 +148,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.96875}
+    oldSize: {x: 1, y: 0.9375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -156,7 +156,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5846320704226333475
+--- !u!114 &7704266651359804755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,10 +165,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 740241723830525950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8470e26ee3cf3184381930ee411172f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 87a944f7d778baa458b5a3241280a1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerOnEnter: 1
+  triggerOnEnter: 0
   triggerOnExit: 0
   OneTimeEffect: 0
-  directionType: 0
+  possibleEvent:
+  - {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
+  - {fileID: 960658159913649683, guid: 183b8445fd8d86748a4bd0bf30b1e871, type: 3}
+  - {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
+  - {fileID: 740241723830525950, guid: 6f06b62f0af2c29419b042e3cc2f6512, type: 3}

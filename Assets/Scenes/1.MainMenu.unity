@@ -674,7 +674,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1175,7 +1175,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2270,8 +2270,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2085950922}
-  - {fileID: 338058240}
   - {fileID: 606154944}
+  - {fileID: 338058240}
   - {fileID: 600379613}
   - {fileID: 530960586}
   - {fileID: 1511143888}
@@ -2297,10 +2297,11 @@ MonoBehaviour:
   totalLevel: 4
   levelButtons:
   - {fileID: 2085950923}
-  - {fileID: 338058241}
   - {fileID: 606154945}
+  - {fileID: 338058241}
   - {fileID: 600379614}
   levelSceneNames: []
+  resetButton: {fileID: 530960587}
   levelNotCleared: {fileID: 8419055342972512494, guid: e1b73a668c2911342b8277ab9f4a4ddd, type: 3}
   isLevelCleared: {fileID: 8977629584574212141, guid: 2b0b877363e9abd49980f30a988af845, type: 3}
 --- !u!1 &1491961792

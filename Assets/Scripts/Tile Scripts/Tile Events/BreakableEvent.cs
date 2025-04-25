@@ -24,7 +24,7 @@ public class BreakableEvent : TileEvents
             spriteRenderer.sprite = normalSprite;
     }
 
-    protected override void Effect()
+    public override void Effect()
     {
         var gameManager = GameManager.Instance;
 

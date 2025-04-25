@@ -12,7 +12,7 @@ public class TeleportEvent : TileEvents
         gridManager = FindObjectOfType<GridManager>(); // Locate GridManager in the scene
     }
 
-    protected override void Effect()
+    public override void Effect()
     {
         var validTargetTiles = new List<Tile>();
 

@@ -49,4 +49,9 @@ public class TileEvents : MonoBehaviour
     {
 
     }
+
+    public virtual void Effect(Tile tile)
+    {
+
+    }
 }

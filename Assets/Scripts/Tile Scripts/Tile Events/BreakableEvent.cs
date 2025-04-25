@@ -13,15 +13,18 @@ public class BreakableEvent : TileEvents
     public Sprite brokenSprite;
 
     private SpriteRenderer spriteRenderer;
-    private Tile tile;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        tile = GetComponent<Tile>();
+        attachedTile = GetComponent<Tile>();
 
         if (spriteRenderer != null && normalSprite != null)
+        {
+            base.attachedTile.sprite_front = normalSprite;
             spriteRenderer.sprite = normalSprite;
+        }
+            
     }
 
     public override void Effect()
@@ -30,7 +33,7 @@ public class BreakableEvent : TileEvents
 
         if (isBroken)
         {
-            gameManager.MovePlayerTo(tile);
+            gameManager.MovePlayerTo(attachedTile);
             return;
         }
 
@@ -39,8 +42,10 @@ public class BreakableEvent : TileEvents
         if (currentSteps == 1)
         {
             if (crackedSprite != null)
+            {
+                base.attachedTile.sprite_front = crackedSprite;
                 spriteRenderer.sprite = crackedSprite;
-
+            }
             gameManager.MovePlayerTo(gameManager.lastTile); // Cancel move
         }
         else if (currentSteps >= maxSteps)
@@ -48,9 +53,47 @@ public class BreakableEvent : TileEvents
             isBroken = true;
 
             if (brokenSprite != null)
+            {
+                base.attachedTile.sprite_front = brokenSprite;
                 spriteRenderer.sprite = brokenSprite;
+            }
 
-            gameManager.MovePlayerTo(tile); // Allow move
+            gameManager.MovePlayerTo(attachedTile); // Allow move
+        }
+    }
+
+    public override void Effect(Tile attachtile)
+    {
+        var gameManager = GameManager.Instance;
+
+        if (isBroken)
+        {
+            gameManager.MovePlayerTo(attachtile);
+            return;
+        }
+
+        currentSteps++;
+
+        if (currentSteps == 1)
+        {
+            if (crackedSprite != null)
+            {
+                attachtile.sprite_front = crackedSprite;
+                //spriteRenderer.sprite = crackedSprite;
+            }
+            gameManager.MovePlayerTo(gameManager.lastTile); // Cancel move
+        }
+        else if (currentSteps >= maxSteps)
+        {
+            isBroken = true;
+
+            if (brokenSprite != null)
+            {
+                attachtile.sprite_front = brokenSprite;
+                //spriteRenderer.sprite = brokenSprite;
+            }
+
+            gameManager.MovePlayerTo(attachedTile); // Allow move
         }
     }
 }

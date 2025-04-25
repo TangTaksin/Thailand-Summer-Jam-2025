@@ -108,16 +108,22 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void SetAsGoal()
-    {
-        isGoal = true;
-        UpdateTileAppearance();
-    }
-
     public void Reset()
     {
         state = TileState.Obscured;
         isGoal = false;
+        UpdateTileAppearance();
+    }
+
+    public void EnterTile()
+    {
+        if (state != TileState.Checked)
+            state = TileState.Checked;
+
+        OnEnterTile?.Invoke();
+        CursorInEvent?.Invoke(this);
+        DescriptionEvent?.Invoke(this);
+
         UpdateTileAppearance();
     }
 
@@ -169,9 +175,7 @@ public class Tile : MonoBehaviour
 
                     //ExecuteEvent
                     //print("Entering tile x " + x + ", y " + y);
-                    OnEnterTile?.Invoke();
-                    CursorInEvent?.Invoke(this);
-                    DescriptionEvent?.Invoke(this);
+                    EnterTile();
                 }
                 break;
         }

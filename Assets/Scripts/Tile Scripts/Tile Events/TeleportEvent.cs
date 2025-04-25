@@ -16,6 +16,11 @@ public class TeleportEvent : TileEvents
     {
         var validTargetTiles = new List<Tile>();
 
+        if (!gridManager)
+        {
+            gridManager = FindFirstObjectByType<GridManager>();
+        }
+
         foreach (var tile in gridManager.tileObjects)
         {
             // Skip if null, self, or not checked

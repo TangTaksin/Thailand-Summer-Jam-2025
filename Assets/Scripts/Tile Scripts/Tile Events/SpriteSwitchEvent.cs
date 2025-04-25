@@ -12,6 +12,7 @@ public class SpriteSwitchEvent : TileEvents
 
     public override void Effect()
     {
+        attachedTile.sprite_front = newSprite;
         spriteRen.sprite = newSprite;
     }
 }

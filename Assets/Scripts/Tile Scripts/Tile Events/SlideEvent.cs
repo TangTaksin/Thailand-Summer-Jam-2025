@@ -22,6 +22,13 @@ public class SlideEvent : TileEvents
     {
         var gameManager = GameManager.Instance;
 
+        if (!gridManager)
+        {
+            gridManager = FindFirstObjectByType<GridManager>();
+        }
+
+
+
         var lastTile = gameManager.lastTile;
         var attachTile = new Vector2Int(attachedTile.x, attachedTile.y);
         var desPos = Vector2Int.zero;
@@ -58,7 +65,7 @@ public class SlideEvent : TileEvents
         if (Destination)
         {
             gameManager.MovePlayerTo(Destination);
-            Destination.OnEnterTile?.Invoke();
+            Destination.EnterTile();
         }
         else
         {

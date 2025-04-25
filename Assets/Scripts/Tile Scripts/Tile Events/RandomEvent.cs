@@ -86,6 +86,7 @@ public class RandomEvent : TileEvents
 
         if (!OneTimeEffect)
         {
+            attachedTile.sprite_front = refTile.sprite_front;
             sRenderer.sprite = refTile.sprite_front;
             attachedTile.infoCursor = refTile.infoCursor;
         }

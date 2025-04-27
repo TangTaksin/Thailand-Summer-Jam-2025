@@ -126,7 +126,7 @@ public class FuelSystem : MonoBehaviour
 
     private void HandleLowFuelEffects()
     {
-        if (currentFuel <= 0f)
+        if (currentFuel <= 0f && !GameManager.Instance.IsGameWon)
         {
             if (lowFuelSound != null && lowFuelSound.isPlaying)
                 lowFuelSound.Stop();

@@ -151,9 +151,10 @@ MonoBehaviour:
   x: 0
   y: 0
   state: 0
+  sr: {fileID: 0}
   sprite_back: {fileID: -8015074620469314830, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
   sprite_front: {fileID: 3712601445576450487, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
-  infoCursor: Teleprot
+  infoCursor: Teleport
   infoDescription: 
   descriptionVariants: []
 --- !u!114 &-6527944591507604831

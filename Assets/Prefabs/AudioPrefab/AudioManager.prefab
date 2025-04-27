@@ -689,6 +689,10 @@ PrefabInstance:
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2665663944277331244, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2792897849442193964, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -947,7 +951,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8097154785792702073, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4910091024616326890, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 341835750082984925, guid: 90adda4f698d50a47ae8223211e1d3dc, type: 3}

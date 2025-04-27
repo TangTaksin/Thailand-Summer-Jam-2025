@@ -5,7 +5,6 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource ambientSource;
     [SerializeField] private AudioSource sfxSource;
 
     [Header("Music")]
@@ -62,15 +61,6 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
         StartCoroutine(FadeInAudio(musicSource)); // Fade in the music
     }
-
-    public void PlayAmbient(AudioClip audioClip)
-    {
-        ambientSource.clip = audioClip;
-        ambientSource.volume = 0; // Start with volume at 0 for fade-in
-        ambientSource.Play();
-        StartCoroutine(FadeInAudio(ambientSource)); // Fade in the ambient sound
-    }
-
     public void PlaySFXWithRandomPitch(AudioClip audioClip)
     {
         // Randomize pitch for SFX
@@ -99,11 +89,6 @@ public class AudioManager : MonoBehaviour
     public void StopMusicFadeOut()
     {
         StartCoroutine(FadeOutMusic(musicSource));
-    }
-
-    public void StopAmbientFadeOut()
-    {
-        StartCoroutine(FadeOutMusic(ambientSource));
     }
 
     private IEnumerator FadeOutMusic(AudioSource audioSource)

@@ -9,7 +9,7 @@ public class TeleportEvent : TileEvents
     private void Awake()
     {
         currentTile = GetComponent<Tile>();
-        gridManager = FindObjectOfType<GridManager>(); // Locate GridManager in the scene
+        gridManager = FindFirstObjectByType<GridManager>(); // Locate GridManager in the scene
     }
 
     public override void Effect()

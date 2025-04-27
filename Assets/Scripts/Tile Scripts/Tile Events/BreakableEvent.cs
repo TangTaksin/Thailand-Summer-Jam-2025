@@ -79,7 +79,7 @@ public class BreakableEvent : TileEvents
             if (crackedSprite != null)
             {
                 attachtile.sprite_front = crackedSprite;
-                //spriteRenderer.sprite = crackedSprite;
+                attachtile.sr.sprite = crackedSprite;
             }
             gameManager.MovePlayerTo(gameManager.lastTile); // Cancel move
         }
@@ -90,7 +90,7 @@ public class BreakableEvent : TileEvents
             if (brokenSprite != null)
             {
                 attachtile.sprite_front = brokenSprite;
-                //spriteRenderer.sprite = brokenSprite;
+                attachtile.sr.sprite = brokenSprite;
             }
 
             gameManager.MovePlayerTo(attachedTile); // Allow move

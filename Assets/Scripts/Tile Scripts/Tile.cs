@@ -14,7 +14,7 @@ public class Tile : MonoBehaviour
     public int x, y;
     public TileState state = TileState.Obscured;
     private GridManager gridManager;
-    protected SpriteRenderer sr;
+    [HideInInspector] public SpriteRenderer sr;
     private bool isGoal = false;
 
     public Sprite sprite_back, sprite_front;
@@ -118,7 +118,11 @@ public class Tile : MonoBehaviour
     public void EnterTile()
     {
         if (state != TileState.Checked)
+        {
             state = TileState.Checked;
+            OnChecked?.Invoke();
+        }
+
 
         OnEnterTile?.Invoke();
         CursorInEvent?.Invoke(this);

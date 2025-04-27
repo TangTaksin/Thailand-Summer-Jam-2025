@@ -82,7 +82,7 @@ public class RandomEvent : TileEvents
 
     public override void Effect()
     {
-        if (refEvent is SlideEvent)
+        if (refEvent is SlideEvent || refEvent is BreakableEvent)
             refEvent.Effect(attachedTile);
         else
             refEvent.Effect();

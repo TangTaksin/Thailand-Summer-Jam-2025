@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "3.Choose one tile to move to.\LEvery move costs 1 fuel"
+  m_text: Choose one tile to move to.Every move costs 1 fuel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e6afdab7940b27478696812b531d5e0, type: 2}
   m_sharedMaterial: {fileID: 7296742638461717473, guid: 3e6afdab7940b27478696812b531d5e0, type: 2}
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1.Tap to reveal hidden tiles around you.
+  m_text: Tap to reveal hidden tiles around you.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e6afdab7940b27478696812b531d5e0, type: 2}
   m_sharedMaterial: {fileID: 7296742638461717473, guid: 3e6afdab7940b27478696812b531d5e0, type: 2}
@@ -1276,7 +1276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2.Each tile has a different effect some help, some harm!
+  m_text: Each tile has a different effect some help, some harm!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e6afdab7940b27478696812b531d5e0, type: 2}
   m_sharedMaterial: {fileID: 7296742638461717473, guid: 3e6afdab7940b27478696812b531d5e0, type: 2}
@@ -2301,7 +2301,6 @@ MonoBehaviour:
   - {fileID: 338058241}
   - {fileID: 600379614}
   levelSceneNames: []
-  resetButton: {fileID: 530960587}
   levelNotCleared: {fileID: 8419055342972512494, guid: e1b73a668c2911342b8277ab9f4a4ddd, type: 3}
   isLevelCleared: {fileID: 8977629584574212141, guid: 2b0b877363e9abd49980f30a988af845, type: 3}
 --- !u!1 &1491961792
@@ -3158,7 +3157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4. Reveal all tiles on map to unlock the destination.
+  m_text: Reveal all tiles on map to unlock the destination.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e6afdab7940b27478696812b531d5e0, type: 2}
   m_sharedMaterial: {fileID: 7296742638461717473, guid: 3e6afdab7940b27478696812b531d5e0, type: 2}

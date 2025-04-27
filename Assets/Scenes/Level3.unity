@@ -1687,8 +1687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148adff8f6992bf41bed38dd9228aa70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFuel: 25
-  currentFuel: 25
+  maxFuel: 20
+  currentFuel: 20
   fuelText: {fileID: 230517019}
   playTime: {fileID: 1528688395}
   fuelNeedle: {fileID: 1379311719}
@@ -3720,13 +3720,13 @@ MonoBehaviour:
     limitPerMap: 12
     spawnChance: 30
   - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
-    limitPerMap: 2
+    limitPerMap: 5
     spawnChance: 13
   - tilePrefab: {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
-    limitPerMap: 5
+    limitPerMap: 3
     spawnChance: 20
   - tilePrefab: {fileID: 1227181531956728071, guid: 189c8c626e15ad147a16d9664998da9e, type: 3}
-    limitPerMap: 20
+    limitPerMap: 25
     spawnChance: 25
   - tilePrefab: {fileID: 6503503527275886636, guid: d76dcb00211de3544b29cad7437e2d44, type: 3}
     limitPerMap: 1

@@ -157,6 +157,14 @@ public class FuelSystem : MonoBehaviour
                 lowFuelWarningPlayed = true;
             }
         }
+        else
+        {
+            // FUEL is above low threshold, stop the low fuel sound!
+            if (lowFuelSound != null && lowFuelSound.isPlaying)
+                lowFuelSound.Stop();
+
+            lowFuelWarningPlayed = false; // allow it to play again when fuel drops later
+        }
     }
 
     public void ResetFuel()

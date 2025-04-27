@@ -1687,8 +1687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148adff8f6992bf41bed38dd9228aa70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFuel: 30
-  currentFuel: 30
+  maxFuel: 25
+  currentFuel: 25
   fuelText: {fileID: 230517019}
   playTime: {fileID: 1528688395}
   fuelNeedle: {fileID: 1379311719}

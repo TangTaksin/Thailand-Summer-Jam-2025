@@ -3666,10 +3666,10 @@ MonoBehaviour:
     limitPerMap: 26
     spawnChance: 30
   - tilePrefab: {fileID: 1227181531956728071, guid: 61a33020f2286d546856afe19921c67f, type: 3}
-    limitPerMap: 4
+    limitPerMap: 3
     spawnChance: 16
   - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
-    limitPerMap: 7
+    limitPerMap: 9
     spawnChance: 13
   - tilePrefab: {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
     limitPerMap: 3

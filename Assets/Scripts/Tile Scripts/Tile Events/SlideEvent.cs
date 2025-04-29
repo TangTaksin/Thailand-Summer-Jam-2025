@@ -30,7 +30,7 @@ public class SlideEvent : TileEvents
         print("transform position: " + transform.position);
 
         var lastTile = gameManager.lastTile;
-        var attachTile = new Vector2Int(attachedTile.x, attachedTile.y);
+        var attachTile = new Vector2Int(attachedTile._x, attachedTile._y);
         var desPos = Vector2Int.zero;
 
         Tile Destination = null;
@@ -38,8 +38,8 @@ public class SlideEvent : TileEvents
         switch (directionType)
         {
             case DirectionType.ice:
-                var direction = new Vector2Int(attachedTile.x, attachedTile.y) 
-                            - new Vector2Int(lastTile.x, lastTile.y);
+                var direction = new Vector2Int(attachedTile._x, attachedTile._y) 
+                            - new Vector2Int(lastTile._x, lastTile._y);
                 desPos = attachTile + direction;
 
                 break;
@@ -86,7 +86,7 @@ public class SlideEvent : TileEvents
         print("transform position: " + transform.position);
 
         var lastTile = gameManager.lastTile;
-        var attachTile = new Vector2Int(attachedTile.x, attachedTile.y);
+        var attachTile = new Vector2Int(attachedTile._x, attachedTile._y);
         var desPos = Vector2Int.zero;
 
         Tile Destination = null;
@@ -94,8 +94,8 @@ public class SlideEvent : TileEvents
         switch (directionType)
         {
             case DirectionType.ice:
-                var direction = new Vector2Int(attachedTile.x, attachedTile.y)
-                            - new Vector2Int(lastTile.x, lastTile.y);
+                var direction = new Vector2Int(attachedTile._x, attachedTile._y)
+                            - new Vector2Int(lastTile._x, lastTile._y);
                 desPos = attachTile + direction;
 
                 break;

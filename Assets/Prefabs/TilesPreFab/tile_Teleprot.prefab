@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da64cf419607e544db27ccc8910db8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
+  _x: 0
+  _y: 0
   state: 0
   sr: {fileID: 0}
   sprite_back: {fileID: -8015074620469314830, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
@@ -157,6 +157,8 @@ MonoBehaviour:
   infoCursor: Teleport
   infoDescription: 
   descriptionVariants: []
+  isGoal: 0
+  isImpassable: 1
 --- !u!114 &-6527944591507604831
 MonoBehaviour:
   m_ObjectHideFlags: 0

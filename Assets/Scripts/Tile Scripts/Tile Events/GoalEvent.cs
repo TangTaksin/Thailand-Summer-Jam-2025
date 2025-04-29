@@ -32,21 +32,21 @@ public class GoalEvent : TileEvents
     {
         base.OnDisable();
 
-        Tile.OnChecked -= TileCheck; 
+        Tile.OnChecked -= TileCheck;
     }
 
     public override void Effect()
     {
-        var GMInstance = GameManager.Instance;
-
         if (canEnter)
         {
+            // Goal unlocked: win the game
             OnGoal?.Invoke();
             GameManager.Instance.StopDecisionTimer();
         }
         else
         {
-            GMInstance.MovePlayerTo(GMInstance.lastTile);
+            // Goal locked: do nothing special
+            // (player can stand here but nothing happens)
         }
     }
 
@@ -57,13 +57,6 @@ public class GoalEvent : TileEvents
 
         canEnter = checkedTile >= tileNeeded;
 
-        if (canEnter)
-        {
-            spriteRend.sprite = unlockedGoalSprite;
-        }
-        else
-        {
-            spriteRend.sprite = lockedGoalSprite;
-        }
+        spriteRend.sprite = canEnter ? unlockedGoalSprite : lockedGoalSprite;
     }
 }

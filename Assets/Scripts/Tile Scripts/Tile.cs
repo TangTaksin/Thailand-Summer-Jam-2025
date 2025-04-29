@@ -11,19 +11,25 @@ public class Tile : MonoBehaviour
         Checked
     }
 
-    public int x, y;
+    
+
+    [Header("Tile Settings")]
+    public int _x, _y;
     public TileState state = TileState.Obscured;
     private GridManager gridManager;
     [HideInInspector] public SpriteRenderer sr;
-    private bool isGoal = false;
 
+    [Header("Tile Graphics")]
     public Sprite sprite_back, sprite_front;
 
+    [Header("Tile Info")]
     [Multiline] public string infoCursor;
-
     [HideInInspector] public string infoDescription;
     [TextArea] public string[] descriptionVariants;
 
+    [Header("Tile Properties")]
+    public bool isGoal = false;
+    public bool isImpassable = false; // <-- Added!
 
     public delegate void TileEvent();
     public TileEvent OnEnterTile, OnExitTile;
@@ -33,16 +39,14 @@ public class Tile : MonoBehaviour
     public static InfoEvent CursorInEvent, CursorOutEvent;
     public static InfoEvent DescriptionEvent;
 
-
-    Color defaultColor;
+    private Color defaultColor;
 
     public void Init(int x, int y, GridManager grid)
     {
-        this.x = x;
-        this.y = y;
+        this._x = x;
+        this._y = y;
         gridManager = grid;
         sr = GetComponent<SpriteRenderer>();
-
         defaultColor = sr.color;
 
         UpdateTileAppearance();
@@ -53,20 +57,13 @@ public class Tile : MonoBehaviour
     {
         if (descriptionVariants.Length > 0)
         {
-            var chosenIndex = UnityEngine.Random.Range(0, descriptionVariants.Length);
-            //print(chosenIndex);
+            int chosenIndex = UnityEngine.Random.Range(0, descriptionVariants.Length);
             infoDescription = descriptionVariants[chosenIndex];
         }
     }
 
     public void UpdateTileAppearance()
     {
-        if (isGoal)
-        {
-            sr.color = Color.green;
-            return;
-        }
-
         switch (state)
         {
             case TileState.Obscured:
@@ -123,7 +120,6 @@ public class Tile : MonoBehaviour
             OnChecked?.Invoke();
         }
 
-
         OnEnterTile?.Invoke();
         CursorInEvent?.Invoke(this);
         DescriptionEvent?.Invoke(this);
@@ -134,7 +130,6 @@ public class Tile : MonoBehaviour
     public void ExitTile()
     {
         OnExitTile?.Invoke();
-        //print("Exiting tile x " + x + ", y " + y);
     }
 
     private void OnMouseEnter()
@@ -176,12 +171,14 @@ public class Tile : MonoBehaviour
                 {
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.player_Step_On_Tile);
                     GameManager.Instance.MovePlayerTo(this);
-
-                    //ExecuteEvent
-                    //print("Entering tile x " + x + ", y " + y);
                     EnterTile();
                 }
                 break;
         }
+    }
+
+    public bool IsPassable()
+    {
+        return !isImpassable;
     }
 }

@@ -109,10 +109,10 @@ public class GameManager : MonoBehaviour
 
     void RevealAdjacentTiles(Tile tile)
     {
-        TryReveal(tile.x + 1, tile.y);
-        TryReveal(tile.x - 1, tile.y);
-        TryReveal(tile.x, tile.y + 1);
-        TryReveal(tile.x, tile.y - 1);
+        TryReveal(tile._x + 1, tile._y);
+        TryReveal(tile._x - 1, tile._y);
+        TryReveal(tile._x, tile._y + 1);
+        TryReveal(tile._x, tile._y - 1);
     }
 
     void TryReveal(int x, int y)
@@ -124,10 +124,10 @@ public class GameManager : MonoBehaviour
 
     void UnRevealLastAdjacentTiles(Tile tile)
     {
-        TryUnReveal(tile.x + 1, tile.y);
-        TryUnReveal(tile.x - 1, tile.y);
-        TryUnReveal(tile.x, tile.y + 1);
-        TryUnReveal(tile.x, tile.y - 1);
+        TryUnReveal(tile._x + 1, tile._y);
+        TryUnReveal(tile._x - 1, tile._y);
+        TryUnReveal(tile._x, tile._y + 1);
+        TryUnReveal(tile._x, tile._y - 1);
     }
 
     void TryUnReveal(int x, int y)
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 
     bool IsAdjacent(Tile a, Tile b)
     {
-        return (Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y)) == 1;
+        return (Mathf.Abs(a._x - b._x) + Mathf.Abs(a._y - b._y)) == 1;
     }
 
 

@@ -25,6 +25,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: isGoal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: infoCursor
       value: Destination
       objectReference: {fileID: 0}
@@ -32,6 +36,10 @@ PrefabInstance:
       propertyPath: sprite_back
       value: 
       objectReference: {fileID: -8015074620469314830, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
+    - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+      propertyPath: isImpassable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 29230005200199523, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
       propertyPath: sprite_front
       value: 

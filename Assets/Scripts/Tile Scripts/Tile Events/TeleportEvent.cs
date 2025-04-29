@@ -21,7 +21,7 @@ public class TeleportEvent : TileEvents
             gridManager = FindFirstObjectByType<GridManager>();
         }
 
-        foreach (var tile in gridManager.tileObjects)
+        foreach (var tile in gridManager.GetAllTiles())
         {
             // Skip if null, self, or not checked
             if (tile == null || tile == currentTile || tile.state != Tile.TileState.Checked)
@@ -39,7 +39,7 @@ public class TeleportEvent : TileEvents
             Tile targetTile = validTargetTiles[Random.Range(0, validTargetTiles.Count)];
             GameManager.Instance.MovePlayerTo(targetTile);
             targetTile.OnEnterTile?.Invoke(); // Trigger enter event
-            Debug.Log($"✅ Teleported to tile at ({targetTile.x}, {targetTile.y})");
+            Debug.Log($"✅ Teleported to tile at ({targetTile._x}, {targetTile._y})");
         }
         else
         {

@@ -2725,6 +2725,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8032133522508395787, guid: 3e296cfb38854f04c850451d27bec325, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8100618910070890644, guid: 3e296cfb38854f04c850451d27bec325, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4312,11 +4316,11 @@ MonoBehaviour:
     limitPerMap: 16
     spawnChance: 40
   - tilePrefab: {fileID: 1227181531956728071, guid: 2fe33c3ac24ea274390418d9775af9c9, type: 3}
-    limitPerMap: 3
+    limitPerMap: 5
     spawnChance: 17
   - tilePrefab: {fileID: 960658159913649683, guid: 183b8445fd8d86748a4bd0bf30b1e871, type: 3}
     limitPerMap: 3
-    spawnChance: 7
+    spawnChance: 13
   - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
     limitPerMap: 6
     spawnChance: 13
@@ -4325,7 +4329,7 @@ MonoBehaviour:
     spawnChance: 14
   - tilePrefab: {fileID: 6503503527275886636, guid: d76dcb00211de3544b29cad7437e2d44, type: 3}
     limitPerMap: 1
-    spawnChance: 122
+    spawnChance: 100
   - tilePrefab: {fileID: 740241723830525950, guid: 1fb9c19cdf0c972459b4f12eecb62fb8, type: 3}
     limitPerMap: 4
     spawnChance: 13

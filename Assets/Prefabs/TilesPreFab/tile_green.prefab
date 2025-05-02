@@ -151,32 +151,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da64cf419607e544db27ccc8910db8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
+  _x: 0
+  _y: 0
   state: 0
+  sr: {fileID: 0}
   sprite_back: {fileID: -8015074620469314830, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
   sprite_front: {fileID: -6104442516128546985, guid: 8b62a6785a4f6664da5e47b832b3df3f, type: 3}
   infoCursor: Gas +8
   infoDescription: "Stopped at a gas station, \nfound a deal \u2014 fill up 500,
     \nget 100 free."
   descriptionVariants:
-  - "Stopped at a gas station,\nfound a deal \u2014 \n\"fill up 500, get 100 free\"."
+  - "Stopped at a gas station,\nfound a deal \u2014 \n\"fill up 500, get 100 free\".\nGas
+    +8"
   - "Ran into an old friend working at the station \u2014 \ngave me a free refill
-    for some reason!"
+    for some reason!\nGas +8"
   - "Saw a fuel truck flipped on the side of the road \u2014 \nthe smell in the air
-    felt like I was getting free gas."
-  - "Dreamed that my tank was full \u2014 \nwoke up, and it really is full!"
+    felt like I was getting free gas.\nGas +8"
+  - "Dreamed that my tank was full \u2014 \nwoke up, and it really is full!\nGas
+    +8"
   - "Drove past a lightning strike \u2014\nthe car sped up as if it was charging
-    itself."
+    itself.\nGas +8"
   - "Heavy rain, the car floated like a boat \u2014\nWater fill the tank.\n(The car
-    stills work for some reasons.)"
-  - "The old man by the road gave me \nfree gas because \"I had a good face.\""
+    stills work for some reasons.)\nGas +8"
+  - "The old man by the road gave me \nfree gas because \"I had a good face.\"\nGas
+    +8"
   - 'The view was so inspiring that
 
-    I just kept driving further.'
-  - "Parked the car for a moment, \nThen somehow my fuel increased \n(Must be a miracle!)."
+    I just kept driving further.
+
+    Gas +8'
+  - "Parked the car for a moment, \nThen somehow my fuel increased \n(Must be a miracle!).\nGas
+    +8"
   - "Drove into a shadow,\nand the car just got faster \u2014\nlike it had some mysterious
-    power."
+    power.\nGas +8"
+  isGoal: 0
+  isImpassable: 0
 --- !u!114 &1333827949613637425
 MonoBehaviour:
   m_ObjectHideFlags: 0

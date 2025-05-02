@@ -2,82 +2,79 @@ using UnityEngine;
 
 public class RandomEvent : TileEvents
 {
+    [Header("Possible Events")]
     public GameObject[] possibleEvent;
 
+    private Tile refTile;
+    private TileEvents refEvent;
 
-    Tile refTile;
-    TileEvents refEvent;
+    private SpriteSwitchEvent refSpriteEvent;
+    private SwitchInfoEvent refCurInfoEvent;
+    private SwitchDescriptionEvent refDescEvent;
 
-    SpriteSwitchEvent refSpriteEvent;
-    SwitchInfoEvent refCurInfoEvent;
-    SwitchDescriptionEvent refDescEvent;
-
-    SpriteRenderer sRenderer;
+    private SpriteRenderer sRenderer;
 
     private void Awake()
     {
         sRenderer = GetComponent<SpriteRenderer>();
         RandomizeEvent();
-
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (refTile.descriptionVariants.Length > 0)
+
+        if (refTile != null && refTile.descriptionVariants.Length > 0)
         {
-            var index = Random.Range(0, refTile.descriptionVariants.Length);
+            int index = Random.Range(0, refTile.descriptionVariants.Length);
             attachedTile.infoDescription = refTile.descriptionVariants[index];
         }
     }
 
-    void RandomizeEvent()
+    private void RandomizeEvent()
     {
-        var index = UnityEngine.Random.Range(0, possibleEvent.Length);
-        var chosenEvent = possibleEvent[index];
+        int index = Random.Range(0, possibleEvent.Length);
+        GameObject chosenEvent = possibleEvent[index];
 
-        chosenEvent.TryGetComponent<Tile>(out refTile);
-        chosenEvent.TryGetComponent<TileEvents>(out refEvent);
-        chosenEvent.TryGetComponent<SpriteSwitchEvent>(out refSpriteEvent);
-        chosenEvent.TryGetComponent<SwitchInfoEvent>(out refCurInfoEvent);
-        chosenEvent.TryGetComponent<SwitchDescriptionEvent>(out refDescEvent);
+        // Cache references from chosen event
+        refTile = chosenEvent.GetComponent<Tile>();
+        refEvent = chosenEvent.GetComponent<TileEvents>();
+        refSpriteEvent = chosenEvent.GetComponent<SpriteSwitchEvent>();
+        refCurInfoEvent = chosenEvent.GetComponent<SwitchInfoEvent>();
+        refDescEvent = chosenEvent.GetComponent<SwitchDescriptionEvent>();
 
+        // Copy and initialize relevant components
         if (refSpriteEvent)
         {
             var spriteRef = gameObject.AddComponent<SpriteSwitchEvent>();
-            spriteRef.OneTimeEffect = refSpriteEvent.OneTimeEffect;
-            spriteRef.triggerOnEnter = refSpriteEvent.triggerOnEnter;
-            spriteRef.triggerOnExit = refSpriteEvent.triggerOnExit;
-
+            CopyEventBase(spriteRef, refSpriteEvent);
             spriteRef.newSprite = refSpriteEvent.newSprite;
             spriteRef.Init();
         }
 
         if (refCurInfoEvent)
         {
-            var curRef = gameObject.AddComponent<SwitchInfoEvent>();
-            curRef.OneTimeEffect = refCurInfoEvent.OneTimeEffect;
-            curRef.triggerOnEnter = refCurInfoEvent.triggerOnEnter;
-            curRef.triggerOnExit = refCurInfoEvent.triggerOnExit;
-
-            curRef.newCursorInfo = refCurInfoEvent.newCursorInfo;
-            curRef.Init();
+            var infoRef = gameObject.AddComponent<SwitchInfoEvent>();
+            CopyEventBase(infoRef, refCurInfoEvent);
+            infoRef.newCursorInfo = refCurInfoEvent.newCursorInfo;
+            infoRef.Init();
         }
 
         if (refDescEvent)
         {
             var descRef = gameObject.AddComponent<SwitchDescriptionEvent>();
-            descRef.OneTimeEffect = refDescEvent.OneTimeEffect;
-            descRef.triggerOnEnter = refDescEvent.triggerOnEnter;
-            descRef.triggerOnExit = refDescEvent.triggerOnExit;
-
+            CopyEventBase(descRef, refDescEvent);
             descRef.newDescInfo = refDescEvent.newDescInfo;
             descRef.Init();
         }
 
-        triggerOnEnter = refEvent.triggerOnEnter;
-        triggerOnExit = refEvent.triggerOnExit;
-        OneTimeEffect = refEvent.OneTimeEffect;
+        // Set base event properties
+        if (refEvent != null)
+        {
+            triggerOnEnter = refEvent.triggerOnEnter;
+            triggerOnExit = refEvent.triggerOnExit;
+            OneTimeEffect = refEvent.OneTimeEffect;
+        }
     }
 
     public override void Effect()
@@ -85,14 +82,20 @@ public class RandomEvent : TileEvents
         if (refEvent is SlideEvent || refEvent is BreakableEvent)
             refEvent.Effect(attachedTile);
         else
-            refEvent.Effect();
+            refEvent?.Effect();
 
-
-        if (!OneTimeEffect)
+        if (!OneTimeEffect && refTile != null)
         {
             attachedTile.sprite_front = refTile.sprite_front;
             sRenderer.sprite = refTile.sprite_front;
             attachedTile.infoCursor = refTile.infoCursor;
         }
+    }
+
+    private void CopyEventBase(TileEvents target, TileEvents source)
+    {
+        target.OneTimeEffect = source.OneTimeEffect;
+        target.triggerOnEnter = source.triggerOnEnter;
+        target.triggerOnExit = source.triggerOnExit;
     }
 }

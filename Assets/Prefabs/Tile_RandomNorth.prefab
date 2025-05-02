@@ -175,7 +175,7 @@ MonoBehaviour:
   triggerOnExit: 0
   OneTimeEffect: 0
   possibleEvent:
-  - {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
-  - {fileID: 960658159913649683, guid: 183b8445fd8d86748a4bd0bf30b1e871, type: 3}
-  - {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
+  - {fileID: 4951365343861649139, guid: 183b8445fd8d86748a4bd0bf30b1e871, type: 3}
   - {fileID: 1227181531956728071, guid: 2fe33c3ac24ea274390418d9775af9c9, type: 3}
+  - {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
+  - {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}

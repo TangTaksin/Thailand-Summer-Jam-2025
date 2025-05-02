@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2098135986438730418}
   - component: {fileID: -6527944591507604831}
   m_Layer: 0
-  m_Name: tile_Teleprot
+  m_Name: tile_Teleport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

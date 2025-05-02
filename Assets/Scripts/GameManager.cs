@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
             playerObject = null;
         }
 
-        // Set a random start tile (bottom row)
         int startX = Random.Range(0, gridManager.width);
         int startY = Random.Range(0, gridManager.height);
 
@@ -139,6 +138,12 @@ public class GameManager : MonoBehaviour
 
     bool IsAdjacent(Tile a, Tile b)
     {
+        if (a == null || b == null)
+        {
+            Debug.LogError("IsAdjacent called with a null Tile! a: " + a + ", b: " + b);
+            return false;
+        }
+        
         return (Mathf.Abs(a._x - b._x) + Mathf.Abs(a._y - b._y)) == 1;
     }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class GridManager : MonoBehaviour
 {
-    [Header("Grid Settings")]
     public TileChance[] tileList;
     public int width = 5;
     public int height = 6;
@@ -12,150 +11,144 @@ public class GridManager : MonoBehaviour
     public int tileNeeded;
 
     private Tile[,] grid;
-    private List<int> tileLimitTrackers = new List<int>();
-    private Dictionary<GameObject, bool> tilePassabilityCache = new Dictionary<GameObject, bool>();
+    public List<Tile> tileObjects = new List<Tile>();
+    List<int> tileLimitTrackers = new List<int>();
 
     public delegate void GridManagerEvent();
     public static GridManagerEvent OnGenerated;
 
     void Awake()
     {
-        CacheImpassableTiles();
         GetLimit();
-    }
 
-    void CacheImpassableTiles()
-    {
-        tilePassabilityCache.Clear();
-        foreach (var entry in tileList)
-        {
-            GameObject prefab = entry.tilePrefab;
-            if (!tilePassabilityCache.ContainsKey(prefab))
-            {
-                Tile tile = prefab.GetComponent<Tile>();
-                tilePassabilityCache[prefab] = tile == null ? false : tile.isImpassable;
-            }
-        }
     }
 
     void GetLimit()
     {
-        tileLimitTrackers.Clear();
         foreach (var tile in tileList)
+        {
             tileLimitTrackers.Add(tile.limitPerMap);
+        }
     }
 
     void ResetLimit()
     {
-        for (int i = 0; i < tileLimitTrackers.Count; i++)
+        //print("reset limit");
+
+        for (int i = 0; tileLimitTrackers.Count > i; i++)
+        {
             tileLimitTrackers[i] = tileList[i].limitPerMap;
+            //print("Reseted Limit:" + tileLimitTrackers[i]);
+        }
     }
 
     public void GenerateGrid()
     {
         ResetLimit();
 
-        if (grid != null)
+        if (tileObjects.Count > 0)
         {
-            for (int x = 0; x < width; x++)
+            foreach (var tile in tileObjects)
             {
-                for (int y = 0; y < height; y++)
-                {
-                    if (grid[x, y] != null)
-                        Destroy(grid[x, y].gameObject);
-                }
+                Destroy(tile.gameObject);
             }
+            tileObjects.Clear();
         }
 
         grid = new Tile[width, height];
-
-        var path = BuildPath();
-        foreach (var pos in path)
-        {
-            SpawnTile(pos.x, pos.y, isPathTile: true);
-        }
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                if (grid[x, y] == null)
-                    SpawnTile(x, y, isPathTile: false);
+                Vector3 pos = new Vector3(x * (1 + spacing), y * (1 + spacing), 0);
+
+                GameObject go = null;
+                Tile tile = null;
+                int safetyCounter = 100;
+
+                do
+                {
+                    go = Instantiate(RandomizeTile(), pos, Quaternion.identity, transform);
+                    tile = go.GetComponent<Tile>();
+                    safetyCounter--;
+
+                    if (safetyCounter <= 0)
+                    {
+                        Debug.LogWarning("Failed to find a valid tile within safety loop.");
+                        break;
+                    }
+
+                    if (IsEdgeTile(x, y) && tile.isImpassable)
+                    {
+                        Destroy(go);
+                        go = null;
+                        tile = null;
+                    }
+
+                } while (go == null);
+
+                tileObjects.Add(tile);
+                tile.Init(x, y, this);
+                grid[x, y] = tile;
             }
         }
 
         OnGenerated?.Invoke();
     }
 
-    List<Vector2Int> BuildPath()
+    private bool IsEdgeTile(int x, int y)
     {
-        List<Vector2Int> path = new List<Vector2Int>();
-        int x = 0, y = 0;
-        path.Add(new Vector2Int(x, y));
-
-        while (x < width - 1 || y < height - 1)
-        {
-            bool right = x < width - 1;
-            bool up = y < height - 1;
-
-            if (right && up)
-                (Random.value < 0.5f ? ref x : ref y)++;
-            else if (right)
-                x++;
-            else
-                y++;
-
-            path.Add(new Vector2Int(x, y));
-        }
-
-        return path;
+        return x == 0 || x == width - 1 || y == 0 || y == height - 1;
     }
 
-    void SpawnTile(int x, int y, bool isPathTile)
+    GameObject RandomizeTile()
     {
-        Vector3 pos = new Vector3(x + x * spacing, y + y * spacing, 0);
-        GameObject prefab = GetRandomTilePrefab(isPathTile);
-        GameObject go = Instantiate(prefab, pos, Quaternion.identity, transform);
-        Tile tile = go.GetComponent<Tile>();
-        tile.Init(x, y, this);
+        float totalWeight = 0f;
+        int validTileCount = 0;
 
-        if (isPathTile)
-            tile.isImpassable = false;
-
-        grid[x, y] = tile;
-    }
-
-    GameObject GetRandomTilePrefab(bool forcePassable)
-    {
-        float range = 0f;
+        // First pass: count valid tiles and total weight
         for (int i = 0; i < tileList.Length; i++)
         {
             if (tileLimitTrackers[i] > 0)
-                range += tileList[i].spawnChance;
-        }
-
-        float random = Random.Range(0f, range);
-        float sum = 0f;
-
-        for (int i = 0; i < tileList.Length; i++)
-        {
-            if (tileLimitTrackers[i] <= 0) continue;
-
-            sum += tileList[i].spawnChance;
-            if (random < sum)
             {
-                GameObject prefab = tileList[i].tilePrefab;
-                bool isImpassable = tilePassabilityCache[prefab];
-
-                if (forcePassable && isImpassable)
-                    continue;
-
-                tileLimitTrackers[i]--;
-                return prefab;
+                totalWeight += tileList[i].spawnChance;
+                validTileCount++;
             }
         }
 
-        // fallback
+        if (validTileCount == 0)
+        {
+            Debug.LogWarning("No tiles left to spawn (all limits reached). Returning null.");
+            return null;
+        }
+
+        float rand = Random.Range(0, totalWeight);
+        float cumulative = 0f;
+
+        Debug.Log("Total Weight: " + totalWeight + " Random Value: " + rand);
+
+        // Second pass: select a tile based on random value
+        for (int i = 0; i < tileList.Length; i++)
+        {
+            if (tileLimitTrackers[i] <= 0)
+                continue;
+
+            cumulative += tileList[i].spawnChance;
+
+            // Debug log for the cumulative value
+            Debug.Log($"Tile {i}: {tileList[i].tilePrefab.name}, Cumulative: {cumulative}, Random: {rand}");
+
+            if (rand <= cumulative)
+            {
+                Debug.Log($"Selected Tile: {tileList[i].tilePrefab.name}");
+                tileLimitTrackers[i]--;
+                return tileList[i].tilePrefab;
+            }
+        }
+
+        // Fallback (shouldn't be reached)
+        Debug.LogError("Tile selection failed. This should not happen.");
         return tileList[0].tilePrefab;
     }
 
@@ -166,40 +159,69 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-    public (int obscure, int revealed, int checkedTiles) TileStatusCounter()
+    public void ResetAllTiles()
     {
-        int obscure = 0, revealed = 0, checkedTiles = 0;
-
-        for (int x = 0; x < grid.GetLength(0); x++)
+        foreach (Tile tile in grid)
         {
-            for (int y = 0; y < grid.GetLength(1); y++)
-            {
-                Tile tile = grid[x, y];
-                if (tile == null) continue;
+            if (tile != null)
+                tile.Reset();
+        }
+    }
 
-                switch (tile.state)
-                {
-                    case Tile.TileState.Obscured: obscure++; break;
-                    case Tile.TileState.Revealed: revealed++; break;
-                    case Tile.TileState.Checked: checkedTiles++; break;
-                }
+    public (int, int, int) TileStatusCounter()
+    {
+        int obscure = 0;
+        int reveal = 0;
+        int check = 0;
+
+        foreach (var tile in tileObjects)
+        {
+            switch (tile.state)
+            {
+                case Tile.TileState.Obscured:
+                    obscure++;
+                    break;
+                case Tile.TileState.Revealed:
+                    reveal++;
+                    break;
+                case Tile.TileState.Checked:
+                    check++;
+                    break;
             }
         }
 
-        return (obscure, revealed, checkedTiles);
+        return (obscure, reveal, check);
     }
 
-    public IEnumerable<Tile> GetAllTiles()
+    // Gizmos for visualizing the grid in the editor
+    void OnDrawGizmos()
     {
+        if (grid == null)
+            return;
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                Tile tile = grid[x, y];
-                if (tile != null)
-                    yield return tile;
+                Vector3 pos = new Vector3(x * (1 + spacing), y * (1 + spacing), 0);
+                Tile tile = GetTile(x, y);
+
+                if (tile != null && tile.isImpassable)
+                {
+                    Gizmos.color = Color.red; // Red for impassable
+                }
+                else
+                {
+                    Gizmos.color = Color.gray; // Default
+                }
+
+                Gizmos.DrawWireCube(pos, new Vector3(1, 1, 0.1f));
+#if UNITY_EDITOR
+                UnityEditor.Handles.Label(pos + new Vector3(0, 0.4f, 0), $"({x},{y})");
+#endif
             }
         }
     }
+
 
 }

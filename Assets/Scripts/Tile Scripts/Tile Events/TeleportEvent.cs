@@ -21,7 +21,7 @@ public class TeleportEvent : TileEvents
             gridManager = FindFirstObjectByType<GridManager>();
         }
 
-        foreach (var tile in gridManager.GetAllTiles())
+        foreach (var tile in gridManager.tileObjects)
         {
             // Skip if null, self, or not checked
             if (tile == null || tile == currentTile || tile.state != Tile.TileState.Checked)

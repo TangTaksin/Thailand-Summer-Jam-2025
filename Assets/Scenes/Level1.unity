@@ -1901,8 +1901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148adff8f6992bf41bed38dd9228aa70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFuel: 23
-  currentFuel: 23
+  maxFuel: 18
+  currentFuel: 18
   fuelText: {fileID: 230517019}
   playTime: {fileID: 1528688395}
   fuelNeedle: {fileID: 1379311719}
@@ -4312,27 +4312,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileList:
-  - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
-    limitPerMap: 16
-    spawnChance: 40
   - tilePrefab: {fileID: 1227181531956728071, guid: 2fe33c3ac24ea274390418d9775af9c9, type: 3}
     limitPerMap: 5
-    spawnChance: 17
-  - tilePrefab: {fileID: 960658159913649683, guid: 183b8445fd8d86748a4bd0bf30b1e871, type: 3}
-    limitPerMap: 3
+    spawnChance: 30
+  - tilePrefab: {fileID: 740241723830525950, guid: 665c6c4f09d07d7498f69829f76c8942, type: 3}
+    limitPerMap: 17
     spawnChance: 13
+  - tilePrefab: {fileID: 4951365343861649139, guid: 183b8445fd8d86748a4bd0bf30b1e871, type: 3}
+    limitPerMap: 3
+    spawnChance: 15
   - tilePrefab: {fileID: 1227181531956728071, guid: 15f09d4736e07b0438b0c18c0f3aeddf, type: 3}
     limitPerMap: 6
-    spawnChance: 13
+    spawnChance: 15
   - tilePrefab: {fileID: 1227181531956728071, guid: 58aa61e03b7558d4a94a0fc722715f82, type: 3}
     limitPerMap: 2
-    spawnChance: 14
+    spawnChance: 20
   - tilePrefab: {fileID: 6503503527275886636, guid: d76dcb00211de3544b29cad7437e2d44, type: 3}
     limitPerMap: 1
-    spawnChance: 100
+    spawnChance: 80
   - tilePrefab: {fileID: 740241723830525950, guid: 1fb9c19cdf0c972459b4f12eecb62fb8, type: 3}
-    limitPerMap: 4
-    spawnChance: 13
+    limitPerMap: 3
+    spawnChance: 10
   width: 5
   height: 6
   spacing: 0.1

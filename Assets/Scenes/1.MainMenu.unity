@@ -1410,7 +1410,7 @@ GameObject:
   - component: {fileID: 738002230}
   - component: {fileID: 738002229}
   m_Layer: 0
-  m_Name: ThaiLandAsp_0
+  m_Name: ThaiLandMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2300,6 +2300,7 @@ MonoBehaviour:
   - {fileID: 606154945}
   - {fileID: 338058241}
   - {fileID: 600379614}
+  resetButton: {fileID: 530960587}
   levelSceneNames: []
   levelNotCleared: {fileID: 8419055342972512494, guid: e1b73a668c2911342b8277ab9f4a4ddd, type: 3}
   isLevelCleared: {fileID: 8977629584574212141, guid: 2b0b877363e9abd49980f30a988af845, type: 3}
